@@ -7,13 +7,17 @@ Specification
 = Details =
 
 *Version 1.0:*
- * Movements
-   * forward, 
-   * left
-   * back
-   * right
- * Shoot
- * Look
+ * Commands
+   * Movements
+     * forward, 
+     * left
+     * back
+     * right
+   * Shoot (straight forward)
+   * Look
+ * Playground is plain simple without anything. Configurable size.
+
+User can paste code for his/her bot into web page on central web page.
 
 
 
