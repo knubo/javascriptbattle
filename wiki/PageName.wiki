@@ -6,6 +6,7 @@ Specification
 
 = Details =
 
+*Version 1.0:*
  * Movements
    * forward, 
    * left
@@ -13,3 +14,8 @@ Specification
    * right
  * Shoot
  * Look
+
+
+
+*Version 2.0:*
+ Configurable bots when starting.
