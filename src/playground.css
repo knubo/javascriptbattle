@@ -1,0 +1,11 @@
+.arena {
+    border-collapse: collapse;
+    border:1px solid black;
+}
+
+.arena TD {
+    width:30px;
+    height:30px;
+    background-color:red;
+    border: 1px solid black;
+}
