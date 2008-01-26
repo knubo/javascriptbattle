@@ -1,10 +1,11 @@
 #summary Some resources that will help
 
-Introduction =
+= Introduction =
 
 Resources found on the net that will help you code.
 
 = Details =
 
-* Javascript OO - part 1: http://www.sitepoint.com/article/oriented-programming-1
-* Javascript OO - part 2: http://www.sitepoint.com/article/oriented-programming-2
+  * Javascript OO - part 1: http://www.sitepoint.com/article/oriented-programming-1
+ 
+  * Javascript OO - part 2: http://www.sitepoint.com/article/oriented-programming-2
