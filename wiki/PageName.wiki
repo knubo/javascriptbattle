@@ -1,8 +1,4 @@
-#summary One-sentence summary of this page.
-
-= Introduction =
-
-A sort of "last man standing" robo rally where players compete with their Javascript object.
+this projects aims to build a sort of "last man standing" robo rally, where players compete with their Javascript object.
 
 = Details =
 
