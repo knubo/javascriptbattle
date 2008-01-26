@@ -1,4 +1,4 @@
-this projects aims to build a sort of "last man standing" robo rally, where players compete with their Javascript object.
+This projects aims to build a sort of "last man standing" robo rally, where players compete with their Javascript object.
 
 = Details =
 
@@ -9,7 +9,7 @@ this projects aims to build a sort of "last man standing" robo rally, where play
      * left
      * back
      * right
-   * Shoot (straight forward)
+   * Eliminate player (straight forward).
    * Look
  * Playground is plain simple without anything. Configurable size.
 
