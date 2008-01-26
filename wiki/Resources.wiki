@@ -1,4 +1,4 @@
-#summary Some resources that will help
+#summary Some good help pages.
 
 = Introduction =
 
@@ -6,6 +6,11 @@ Resources found on the net that will help you code.
 
 = Details =
 
+Required software:
+
+  * Firebug - https://addons.mozilla.org/en-US/firefox/addon/1843
+
+Nice articles for Javascript:
+
   * Javascript OO - part 1: http://www.sitepoint.com/article/oriented-programming-1
- 
   * Javascript OO - part 2: http://www.sitepoint.com/article/oriented-programming-2
