@@ -1,14 +1,20 @@
-#summary Some good help pages.
+#summary Some good help pages and all the resources used.
 
 = Introduction =
 
-Resources found on the net that will help you code.
+Resources found on the net that will help you code. Also lists the resources used in the project.
 
 = Details =
+
+Used libraries:
+  * Protype - http://www.prototypejs.org/
+  * Scriptaculous - http://script.aculo.us/
 
 Required software:
 
   * Firebug - https://addons.mozilla.org/en-US/firefox/addon/1843
+
+
 
 Nice articles for Javascript:
 
