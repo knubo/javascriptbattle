@@ -1,3 +1,4 @@
+#labels Phase-Requirements
 This projects aims to build a sort of "last man standing" robo rally, where players compete with their Javascript object.
 
 = Details =
