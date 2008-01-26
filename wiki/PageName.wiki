@@ -2,7 +2,7 @@
 
 = Introduction =
 
-Specification
+A sort of "last man standing" robo rally where players compete with their Javascript object.
 
 = Details =
 
