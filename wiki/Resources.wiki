@@ -14,3 +14,4 @@ Nice articles for Javascript:
 
   * Javascript OO - part 1: http://www.sitepoint.com/article/oriented-programming-1
   * Javascript OO - part 2: http://www.sitepoint.com/article/oriented-programming-2
+  * Javascript tutorial: http://www.w3schools.com/js/default.asp
