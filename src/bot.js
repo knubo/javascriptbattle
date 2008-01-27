@@ -4,7 +4,7 @@ Bot.DIREAST = 2;
 Bot.DIRSOUTH = 3;
 Bot.DIRWEST = 4;
 
-function Bot(botBrain, x, y, direction) {
+function Bot(botBrain, y, x, direction) {
 	this.botBrain = botBrain;
     this.x = x;
     this.y = y;
