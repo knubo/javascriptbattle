@@ -9,3 +9,8 @@
     background-color:red;
     border: 1px solid black;
 }
+
+.fieldImage {
+	max-height:30px;
+	max-width:30px;
+}
