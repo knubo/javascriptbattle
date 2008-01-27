@@ -7,7 +7,7 @@ function BotBrain1() {
 	this.decide = function(bot) {
 		var command = new Command();
 
-		if (bot.y > 0 && bot.dir != Bot.DIRNORTH) {
+		if (bot.y > 0) {
 			command.move = Command.MOVEFRONT;
 		}
 			

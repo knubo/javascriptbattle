@@ -3,14 +3,17 @@
     border:1px solid black;
 }
 
+.robot {
+  position:absolute;
+  top: 9px;
+  left: 9px;
+  width: 32px;
+  height: 29px;
+}
+
 .arena TD {
     width:30px;
     height:30px;
     background-color:red;
     border: 1px solid black;
-}
-
-.fieldImage {
-	max-height:30px;
-	max-width:30px;
 }
