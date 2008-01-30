@@ -1,5 +1,5 @@
-Command.TURNLEFT = 1;
-Command.TURNRIGHT = 2;
+Command.TURNLEFT = -1;
+Command.TURNRIGHT = 1;
 
 Command.MOVEFRONT = 1;
 

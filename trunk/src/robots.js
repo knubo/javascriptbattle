@@ -29,18 +29,27 @@ function Robots(arena) {
             var newX = currentBot.x;
 
             if (currentBot.dir == Bot.DIRNORTH || currentBot.dir == Bot.DIRSOUTH) {
-                var ydelta = currentBot.dir - 2;
-                newY += ydelta;
+                newY += (currentBot.dir - 2);
             }
 
-            if (currentBot.dir == Bot.DIRWEST || currentBot.dir == Bot.DIREAST) {
-                var xdelta = (currentBot.dir - 3) * -1;
-                newX += xdelta;
+            if (currentBot.dir == Bot.DIRWEST || currentBot.dir == Bot.DIREAST) {               
+                newX += ((currentBot.dir - 3) * -1);
             }
 
             currentBot.y = this.limitY(newY);
             currentBot.x = this.limitX(newX);
             this.arena.moveRobot(currentBot);
+        } else if(command.turn) {
+            currentBot.dir += command.turn;
+
+            if(currentBot.dir < 1) {
+                currentBot.dir = 4;
+            }
+            if(currentBot.dir > 4) {
+                currentBot.dir = 1;
+            }
+
+            this.arena.turnRobot(currentBot);
         }
     }
 

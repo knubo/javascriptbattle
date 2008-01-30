@@ -7,13 +7,13 @@ function BotBrain1() {
 	this.decide = function(bot) {
 		var command = new Command();
 
-		if (count % 4 == 0) {
+		if (this.count % 4 == 0) {
             command.turn = Command.TURNLEFT;
 		} else {
 			command.move = Command.MOVEFRONT;
 		}
 
-        count++;
+        this.count++;
 		return command;
 	}
 
