@@ -1,19 +1,49 @@
 .arena {
     border-collapse: collapse;
-    border:1px solid black;
+    border: 1px solid black;
 }
 
 .robot {
-  position:absolute;
-  top: 9px;
-  left: 9px;
-  width: 32px;
-  height: 29px;
+    position: absolute;
+    top: 9px;
+    left: 9px;
 }
 
+.robotImg {
+    width: 32px;
+    height: 29px;
+}
+
+.starImg {
+    width:10px;
+    height:10px;
+    position:relative;
+}
+
+.dir1 {
+  right:21px;
+  top:-18px;
+}
+
+.dir2 {
+  right:11px;
+  top:-9px;
+}
+
+.dir3 {
+  right: 21px;
+  top: 0px;
+}
+
+.dir4 {
+  right:32px;
+  top:-9px;
+}
+
+
 .arena TD {
-    width:30px;
-    height:30px;
-    background-color:red;
+    width: 30px;
+    height: 30px;
+    background-color: red;
     border: 1px solid black;
 }
