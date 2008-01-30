@@ -4,21 +4,21 @@
 }
 
 .explosion {
-    position: relative;
+    position: absolute;
     display: none;
     width: 32px;
     height: 29px;
     z-index:200;
-    top:-30px;    
+    top:0px;
 }
 
 .radar {
-    position: relative;
+    position: absolute;
     display: none;
     width: 32px;
     height: 29px;
     z-index:100;
-    top:-30px;
+    top:0px;
 }
 
 .robot {
