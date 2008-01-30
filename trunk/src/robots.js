@@ -63,6 +63,8 @@ function Robots(arena) {
             }
 
             this.arena.turnRobot(currentBot);
+        } else if(command.look) {
+            this.arena.radar(currentBot);
         }
     }
 
