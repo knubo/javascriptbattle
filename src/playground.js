@@ -129,7 +129,7 @@ function startBattle() {
     var toWatch2 = robots.bots[1];
 
     toWatch2.img.observe('click', function() {
-        arena.laser(toWatch2);
+        arena.explode(toWatch2);
     });
 
 }    
