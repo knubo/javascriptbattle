@@ -7,8 +7,14 @@ function BotBrain2(picUrl, name) {
 	this.decide = function(bot) {
 
 		var command = new Command();
-		command.move = Command.MOVEFRONT;
-		
+
+        if(Math.random() > 0.5) {
+            command.look = true;
+
+        } else {
+            command.move = Command.MOVEFRONT;
+        }
+
 		return command;
 	}
 
