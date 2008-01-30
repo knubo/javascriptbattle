@@ -20,7 +20,7 @@ function Robots(arena) {
     }
 
     this.makeOrder = function() {
-        var bot;
+        var i;
         for (i in this.bots) {
             this.bots[i].pri = Math.random();
         }

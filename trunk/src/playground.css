@@ -33,13 +33,13 @@
 }
 
 .starImg {
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     position: relative;
 }
 
 .dir1 {
-    right: 21px;
+    right: 23px;
     top: -18px;
 }
 
@@ -49,7 +49,7 @@
 }
 
 .dir3 {
-    right: 21px;
+    right: 23px;
     top: 0px;
 }
 
@@ -61,6 +61,6 @@
 .arena TD {
     width: 30px;
     height: 30px;
-    background-color: red;
+    background-color: lightgray;
     border: 1px solid black;
 }
