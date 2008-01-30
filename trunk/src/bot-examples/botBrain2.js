@@ -7,7 +7,7 @@ function BotBrain2(picUrl, name) {
 	this.decide = function(bot) {
 
 		var command = new Command();
-		command.move = Command.MOVEBACK;
+		command.move = Command.MOVEFRONT;
 		
 		return command;
 	}
