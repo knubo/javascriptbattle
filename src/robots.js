@@ -20,8 +20,9 @@ function Robots(arena) {
     }
 
     this.makeOrder = function() {
-        for (var bot in this.bots) {
-            bot.pri = Math.random();
+        var bot;
+        for (i in this.bots) {
+            this.bots[i].pri = Math.random();
         }
         this.bots.sort(function(a, b) {return a.pri - b.pri});
     }
@@ -32,7 +33,6 @@ function Robots(arena) {
             var currentBot = this.bots[i];
             var command = currentBot.botBrain.decide(currentBot);
             this.performCommand(currentBot, command);
-            alert('neste...');
         }
     }
 
