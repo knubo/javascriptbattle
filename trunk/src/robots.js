@@ -15,11 +15,24 @@ function Robots(arena) {
         this.arena.newBot(bot);
     }
 
-    this.gameLoop = function() {
+    this.rnd = function(ceiling) {
+        return Math.floor(Math.random() * ceiling)
+    }
+
+    this.makeOrder = function() {
+        for (var bot in this.bots) {
+            bot.pri = Math.random();
+        }
+        this.bots.sort(function(a, b) {return a.pri - b.pri});
+    }
+
+    this.gameLoop = function() { 
+        this.makeOrder();
         for (var i = 0; i < this.bots.length; i++) {
             var currentBot = this.bots[i];
             var command = currentBot.botBrain.decide(currentBot);
             this.performCommand(currentBot, command);
+            alert('neste...');
         }
     }
 
