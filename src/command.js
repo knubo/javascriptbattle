@@ -2,7 +2,6 @@ Command.TURNLEFT = 1;
 Command.TURNRIGHT = 2;
 
 Command.MOVEFRONT = 1;
-Command.MOVEBACK = 2;
 
 function Command() {
 	this.shoot = false;
