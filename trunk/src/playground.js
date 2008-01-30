@@ -6,27 +6,35 @@ function Arena(width, height) {
     this.bots = [];
 
     this.performCommand = function(theBot, command) {
-    	if (command.move) {
-    		var posDelta = (command.move-1)*2-1;
+        if (command.move) {
+            var posDelta = (command.move - 1) * 2 - 1;
 
-    		if (theBot.dir == Bot.DIRNORTH && theBot.y < 20) {
-    			theBot.y = theBot.y + posDelta;
-    		}
-    		if (theBot.dir == Bot.DIRSOUTH && theBot.y > 0) {
-    			theBot.y = theBot.y - posDelta;
-    		}
-            this.moveRobot(theBot.img, theBot.y, theBot.x);
+            if (theBot.dir == Bot.DIRNORTH && theBot.y < 20) {
+                theBot.y = theBot.y + posDelta;
+            }
+            if (theBot.dir == Bot.DIRSOUTH && theBot.y > 0) {
+                theBot.y = theBot.y - posDelta;
+            }
+            this.moveRobot(theBot);
         }
     }
 
-    this.moveRobot = function(robotImg, ypos, xpos) {
-        var cellToMoveTo = $('y'+ypos+'x'+xpos);
+    this.turnRobot = function(theBot) {
+
+        theBot.star.removeClassName("dir1");
+        theBot.star.removeClassName("dir2");
+        theBot.star.removeClassName("dir3");
+        theBot.star.removeClassName("dir4");
+
+        theBot.star.addClassName("dir"+theBot.dir);
+    }
+    this.moveRobot = function(theBot) {
+        var cellToMoveTo = $('y' + theBot.y + 'x' + theBot.x);
 
         var cellPosition = cellToMoveTo.viewportOffset();
 
-        new Effect.Move(robotImg, {y:cellPosition.top, x:cellPosition.left , mode: 'absolute'});
+        new Effect.Move(theBot.img, {y:cellPosition.top, x:cellPosition.left , mode: 'absolute'});
 
-        
     }
 
     this.drawArena = function (target) {
@@ -39,28 +47,37 @@ function Arena(width, height) {
             table.insert(row);
             for (x = 0; x < this.width; x++) {
                 var col = new Element('td');
-                col.id = 'y'+y+'x'+x;
+                col.id = 'y' + y + 'x' + x;
                 row.insert(col);
             }
         }
     }
-      
-    this.findBot = function (x,y) {
-    	for (var i = 0; i< this.bots.length; i++) {
-    		if (this.bots[i].x == x && this.bots[i].y == y) {
-				return this.bots[i];
-    		}
-    	}
+
+    this.findBot = function (x, y) {
+        for (var i = 0; i < this.bots.length; i++) {
+            if (this.bots[i].x == x && this.bots[i].y == y) {
+                return this.bots[i];
+            }
+        }
     }
-    
+
     this.addBot = function (bot) {
-    	this.bots.push(bot);
-    	var pic = new Element('img', {'class':'robot', 'src':bot.botBrain.picUrl, 'alt':'Player icon', 'title':'Player '+bot.botBrain.name});
-    	bot.img = pic;
+        this.bots.push(bot);
+        var div = new Element('div', {'class':'robot'});
+        var pic = new Element('img', {'class':'robotImg', 'src':bot.botBrain.picUrl, 'alt':'Player icon', 'title':'Player ' + bot.botBrain.name, 'name':bot.botBrain.name});
+        bot.img = div;
 
-        this.moveRobot(pic, bot.y, bot.x);
+        div.insert(pic);
 
-        $('playground').insert(pic);
+        var star = new Element('img', {'class':'starImg','src':'images/star.png'});
+        bot.star = star;
+        div.insert(star);
+
+        this.turnRobot(bot);
+        this.moveRobot(bot, -1, -1);
+
+
+        $('playground').insert(div);
 
 
     }
@@ -76,12 +93,12 @@ function startBattle() {
     arena.drawArena($('playground'));
 
     arena.addBot(new Bot(new BotBrain1(), 12, 3, Bot.DIRNORTH));
-    arena.addBot(new Bot(new BotBrain2(), 10, 1, Bot.DIRNORTH));
+    arena.addBot(new Bot(new BotBrain2(), 10, 1, Bot.DIRSOUTH));
 
 
     /* Just for testing */
     $('playground').observe('click', function() {
-        for (var i=0; i<arena.bots.length; i++) {
+        for (var i = 0; i < arena.bots.length; i++) {
             var theBot = arena.bots[i];
             var command = theBot.botBrain.decide(theBot);
             arena.performCommand(theBot, command);
