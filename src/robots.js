@@ -12,7 +12,7 @@ function Robots(arena) {
 
     this.addBot = function(bot) {
         this.bots.push(bot);
-//        this.arena.newBot(bot);
+        this.arena.newBot(bot);
     }
 
 	this.gameLoop = function() {
@@ -25,19 +25,22 @@ function Robots(arena) {
 
     this.performCommand = function(currentBot, command) {
     	if (command.move) {
-    		if (currentBot.dir == Bot.DIRNORTH || currentBot.dir == Bot.DIRSOUTH) {
-        		var posDelta = command.move-2;
-                var newY = currentBot.y + posDelta;
+            var newY = currentBot.y;
+            var newX = currentBot.x;
+
+            if (currentBot.dir == Bot.DIRNORTH || currentBot.dir == Bot.DIRSOUTH) {
+        		var ydelta = command.move-2;
+                newY += ydelta;
             }
             
     		if (currentBot.dir == Bot.DIRWEST || currentBot.dir == Bot.DIREAST) {
-        		var posDelta = (command.move-3)*-1;
-                var newX = currentBot.x +posDelta;
+        		var xdelta = (command.move-3)*-1;
+                newX += xdelta;
             }
 
             currentBot.y = this.limitY(newY);
             currentBot.x = this.limitX(newX);
-            this.arena.moveRobot(currentBot.img, currentBot.y, currentBot.x);
+            this.arena.moveRobot(currentBot);
         }
     }
     	
@@ -49,6 +52,8 @@ function Robots(arena) {
         if (x > this.arena.width-1) {
             return this.arena.width-1;
         }
+
+        return x;
     }            
 
     this.limitY = function(y) {
@@ -58,6 +63,8 @@ function Robots(arena) {
         if (y > this.arena.height-1) {
             return this.arena.height-1;
         }
+
+        return y;
     }            
     
 }

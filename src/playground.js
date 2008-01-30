@@ -39,7 +39,6 @@ function Arena(width, height) {
     }
       
     this.newBot = function(bot) {
-        this.bots.push(bot);
         var div = new Element('div', {'class':'robot'});
         var pic = new Element('img', {'class':'robotImg', 'src':bot.botBrain.picUrl, 'alt':'Player icon', 'title':'Player ' + bot.botBrain.name, 'name':bot.botBrain.name});
         bot.img = div;
@@ -68,7 +67,7 @@ function startBattle() {
     arena.drawArena($('playground'));
 
     robots.addBot(new Bot(new BotBrain1(), 12, 3, Bot.DIRNORTH));
-    robots.addBot(new Bot(new BotBrain2(), 10, 1, Bot.DIRNSOUTH));
+    robots.addBot(new Bot(new BotBrain2(), 10, 1, Bot.DIRSOUTH));
 
 
     /* Just for testing */
