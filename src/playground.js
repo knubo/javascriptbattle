@@ -58,15 +58,22 @@ function Arena(width, height) {
     }
 
     this.explode = function(bot) {
-        var pos = bot.img.viewportOffset();
 
         var boom = $('boom');
         bot.img.insert(boom);
         
         boom.setStyle("display:block");
 
-        new Effect.Shrink($('boom'));
+        new Effect.Shrink(boom);
+    }
 
+    this.radar = function(bot) {
+        var radar = $('radar');
+        bot.img.insert(radar);
+
+        radar.setStyle("display:block");
+
+        new Effect.Fade(radar);
     }
 }
 
@@ -78,8 +85,10 @@ function startBattle() {
     arena.drawArena($('playground'));
 
     var boom = new Element('img', {'class':'explosion', 'src':'images/Explosion.gif', 'id':'boom'});
+    var radar = new Element('img', {'class':'radar', 'src':'images/radar1.gif', 'id':'radar'});
 
     $('playground').insert(boom);
+    $('playground').insert(radar);
 
     robots.addBot(new Bot(new BotBrain1(), 12, 3, Bot.DIRNORTH));
     robots.addBot(new Bot(new BotBrain2(), 10, 1, Bot.DIRSOUTH));
@@ -97,6 +106,11 @@ function startBattle() {
         arena.explode(toWatch);
     });
 
+    var toWatch2 = robots.bots[1];
+
+    toWatch2.img.observe('click', function() {
+        arena.radar(toWatch2);
+    });
 
 }    
 

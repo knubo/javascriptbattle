@@ -9,8 +9,16 @@
     width: 32px;
     height: 29px;
     z-index:200;
+    top:-30px;    
+}
+
+.radar {
+    position: relative;
+    display: none;
+    width: 32px;
+    height: 29px;
+    z-index:100;
     top:-30px;
-    
 }
 
 .robot {
