@@ -1,4 +1,3 @@
-
 function BotBrain1() {
     this.name = 'Klaus';
     this.picUrl = 'images/kst.jpg';
@@ -17,6 +16,6 @@ function BotBrain1() {
 	this.hitted = function(hitInfo) {
 	}
 
-	this.looked = function(view) {
+	this.radar = function(view) {
 	}
 }

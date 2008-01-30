@@ -1,23 +1,7 @@
-fieldWidth = 30;
 
 function Arena(width, height) {
     this.width = width;
     this.height = height;
-    this.bots = [];
-
-    this.performCommand = function(theBot, command) {
-        if (command.move) {
-            var posDelta = (command.move - 1) * 2 - 1;
-
-            if (theBot.dir == Bot.DIRNORTH && theBot.y < 20) {
-                theBot.y = theBot.y + posDelta;
-            }
-            if (theBot.dir == Bot.DIRSOUTH && theBot.y > 0) {
-                theBot.y = theBot.y - posDelta;
-            }
-            this.moveRobot(theBot);
-        }
-    }
 
     this.turnRobot = function(theBot) {
 
@@ -28,6 +12,7 @@ function Arena(width, height) {
 
         theBot.star.addClassName("dir"+theBot.dir);
     }
+    
     this.moveRobot = function(theBot) {
         var cellToMoveTo = $('y' + theBot.y + 'x' + theBot.x);
 
@@ -52,16 +37,8 @@ function Arena(width, height) {
             }
         }
     }
-
-    this.findBot = function (x, y) {
-        for (var i = 0; i < this.bots.length; i++) {
-            if (this.bots[i].x == x && this.bots[i].y == y) {
-                return this.bots[i];
-            }
-        }
-    }
-
-    this.addBot = function (bot) {
+      
+    this.newBot = function(bot) {
         this.bots.push(bot);
         var div = new Element('div', {'class':'robot'});
         var pic = new Element('img', {'class':'robotImg', 'src':bot.botBrain.picUrl, 'alt':'Player icon', 'title':'Player ' + bot.botBrain.name, 'name':bot.botBrain.name});
@@ -79,30 +56,24 @@ function Arena(width, height) {
 
         $('playground').insert(div);
 
-
     }
-    this.bots = [];
-    this.width = width;
-    this.height = height;
+
 }
 
 
 function startBattle() {
     var arena = new Arena(20, 20);
+    var robots = new Robots(arena);
 
     arena.drawArena($('playground'));
 
-    arena.addBot(new Bot(new BotBrain1(), 12, 3, Bot.DIRNORTH));
-    arena.addBot(new Bot(new BotBrain2(), 10, 1, Bot.DIRSOUTH));
+    robots.addBot(new Bot(new BotBrain1(), 12, 3, Bot.DIRNORTH));
+    robots.addBot(new Bot(new BotBrain2(), 10, 1, Bot.DIRNSOUTH));
 
 
     /* Just for testing */
     $('playground').observe('click', function() {
-        for (var i = 0; i < arena.bots.length; i++) {
-            var theBot = arena.bots[i];
-            var command = theBot.botBrain.decide(theBot);
-            arena.performCommand(theBot, command);
-        }
+	robots.gameLoop();
     });
 
 }    
