@@ -3,7 +3,16 @@
     border: 1px solid black;
 }
 
-.explosion {
+.laser {
+    position:absolute;
+    display:none;
+    z-index:10;
+    color:red;
+    
+    background-color:red;
+}
+
+.boom {
     position: absolute;
     display: none;
     width: 32px;
