@@ -9,7 +9,7 @@
     width: 32px;
     height: 29px;
     z-index:200;
-    top:0px;
+    top:0;
 }
 
 .radar {
@@ -18,7 +18,7 @@
     width: 32px;
     height: 29px;
     z-index:100;
-    top:0px;
+    top:0;
 }
 
 .robot {
@@ -50,7 +50,7 @@
 
 .dir3 {
     right: 23px;
-    top: 0px;
+    top: 0;
 }
 
 .dir4 {
