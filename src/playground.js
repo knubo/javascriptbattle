@@ -40,7 +40,7 @@ function Arena(width, height) {
       
     this.newBot = function(bot) {
         var div = new Element('div', {'class':'robot'});
-        var pic = new Element('img', {'class':'robotImg', 'src':bot.botBrain.picUrl, 'alt':'Player icon', 'title':'Player ' + bot.botBrain.name, 'name':bot.botBrain.name});
+        var pic = new Element('img', {'class':'robotImg', 'src':bot.botBrain.picUrl, 'alt':'Player icon', 'title':'Player ' + bot.botBrain.name});
         bot.img = div;
 
         div.insert(pic);
@@ -57,6 +57,17 @@ function Arena(width, height) {
 
     }
 
+    this.explode = function(bot) {
+        var pos = bot.img.viewportOffset();
+
+        var boom = $('boom');
+        bot.img.insert(boom);
+        
+        boom.setStyle("display:block");
+
+        new Effect.Shrink($('boom'));
+
+    }
 }
 
 
@@ -66,6 +77,10 @@ function startBattle() {
 
     arena.drawArena($('playground'));
 
+    var boom = new Element('img', {'class':'explosion', 'src':'images/Explosion.gif', 'id':'boom'});
+
+    $('playground').insert(boom);
+
     robots.addBot(new Bot(new BotBrain1(), 12, 3, Bot.DIRNORTH));
     robots.addBot(new Bot(new BotBrain2(), 10, 1, Bot.DIRSOUTH));
 
@@ -74,6 +89,14 @@ function startBattle() {
     $('playground').observe('click', function() {
 	robots.gameLoop();
     });
+
+
+    var toWatch = robots.bots[0];
+
+    toWatch.img.observe('click', function() {
+        arena.explode(toWatch);
+    });
+
 
 }    
 
