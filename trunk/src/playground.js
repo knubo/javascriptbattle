@@ -105,15 +105,15 @@ function Arena(width, height) {
 
     this.updatePlayerInfo = function(bots) {
 
-        var names = []
+        var res = '';
 
         for(i = 0; i < bots.length; i++) {
-            names.push(bots[i].botBrain.name);
+            res+="<tr><td><img src='"+bots[i].botBrain.picUrl+"' class='robotImg'></td><td>";
+            res+=bots[i].botBrain.name+'</td><td>';
+            res+=bots[i].health+'</td></tr>';
         }
 
-        var m = names.join('</td></tr><tr><td>');
-
-        $('playerlist').innerHTML = '<tr><td>'+m+'</tr></td>';
+        $('playerlist').innerHTML = res;
     }
 }
 
