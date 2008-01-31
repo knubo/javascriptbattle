@@ -99,6 +99,18 @@ function Arena(width, height) {
 
     }
 
+    this.updatePlayerInfo = function(bots) {
+
+        var names = []
+
+        for(i = 0; i < bots.length; i++) {
+            names.push(bots[i].botBrain.name);
+        }
+
+        var m = names.join('</td></tr><tr><td>');
+
+        $('playerlist').innerHTML = '<tr><td>'+m+'</tr></td>';
+    }
 }
 
 
@@ -111,6 +123,8 @@ function startBattle() {
     robots.addBot(new Bot(new BotBrain1(), 12, 3, Bot.DIRNORTH));
     robots.addBot(new Bot(new BotBrain2(), 12, 4, Bot.DIRSOUTH));
 
+
+    arena.updatePlayerInfo(robots.bots);
 
     /* Just for testing */
     $('playground').observe('click', function() {

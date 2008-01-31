@@ -1,3 +1,5 @@
+
+
 .arena {
     border-collapse: collapse;
     border: 1px solid black;
@@ -73,3 +75,18 @@
     background-color: lightgray;
     border: 1px solid black;
 }
+
+#playground {
+    float:left;
+}
+
+/* The player info stuff */
+
+#players {
+}
+
+.playertable {
+    margin-left: 20px;    
+}
+
+.playertable thead th { border-bottom:2px solid darkslategray;}
