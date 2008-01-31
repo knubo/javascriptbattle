@@ -80,13 +80,23 @@
     float:left;
 }
 
-/* The player info stuff */
-
 #players {
+    float:left;   
 }
 
+#control {
+    float:left;
+}
+/* The player info stuff */
+
+.controlContent {
+    margin-left:20px;
+}
 .playertable {
-    margin-left: 20px;    
+    margin-left: 20px;
+    border-collapse: collapse;
 }
 
 .playertable thead th { border-bottom:2px solid darkslategray;}
+.playertable tbody td { border: 1px solid cadetblue; padding-left:5px;padding-right:5px;}
+
