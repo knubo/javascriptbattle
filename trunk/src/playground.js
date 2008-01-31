@@ -83,6 +83,10 @@ function Arena(width, height) {
         new Effect.Fade(radar);
     }
 
+    this.die = function(bot) {
+        bot.img.setStyle("display:none");
+    }
+
     this.laser = function(bot) {
         var laser = bot.laserImg;
 
