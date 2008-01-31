@@ -1,18 +1,17 @@
-
 function Arena(width, height) {
     this.width = width;
     this.height = height;
 
     this.turnRobot = function(theBot) {
 
-        theBot.star.removeClassName("dir1");
-        theBot.star.removeClassName("dir2");
-        theBot.star.removeClassName("dir3");
-        theBot.star.removeClassName("dir4");
+        theBot.starImg.removeClassName("dir1");
+        theBot.starImg.removeClassName("dir2");
+        theBot.starImg.removeClassName("dir3");
+        theBot.starImg.removeClassName("dir4");
 
-        theBot.star.addClassName("dir"+theBot.dir);
+        theBot.starImg.addClassName("dir" + theBot.dir);
     }
-    
+
     this.moveRobot = function(theBot) {
         var cellToMoveTo = $('y' + theBot.y + 'x' + theBot.x);
 
@@ -37,7 +36,7 @@ function Arena(width, height) {
             }
         }
     }
-      
+
     this.newBot = function(bot) {
         var div = new Element('div', {'class':'robot'});
         var pic = new Element('img', {'class':'robotImg', 'src':bot.botBrain.picUrl, 'alt':'Player icon', 'title':'Player ' + bot.botBrain.name});
@@ -50,10 +49,10 @@ function Arena(width, height) {
         radar.setStyle("display:none");
 
         bot.img = div;
-        bot.boom = boom;
-        bot.radar = radar;
-        bot.star = star;
-        bot.laser = laser;
+        bot.boomImg = boom;
+        bot.radarImg = radar;
+        bot.starImg = star;
+        bot.laserImg = laser;
 
         div.insert(pic);
         div.insert(radar);
@@ -70,31 +69,30 @@ function Arena(width, height) {
     }
 
     this.explode = function(bot) {
-        var boom = bot.boom;
-        bot.img.insert(boom);
-        
+        var boom = bot.boomImg;
+
         boom.setStyle("display:block");
 
         new Effect.Shrink(boom);
     }
 
     this.radar = function(bot) {
-        var radar = bot.radar;
+        var radar = bot.radarImg;
         radar.setStyle("display:block");
 
         new Effect.Fade(radar);
     }
 
     this.laser = function(bot) {
-        var laser = bot.laser;
+        var laser = bot.laserImg;
 
-        if(bot.dir == Bot.DIRSOUTH) {
+        if (bot.dir == Bot.DIRSOUTH) {
             laser.setStyle("display:block; width:5;height:85;left:13;top:25");
-        } else if(bot.dir == Bot.DIRNORTH) {
-            laser.setStyle("display:block; width:5;height:90;left:13;top:-70");            
-        } else if(bot.dir == Bot.DIRWEST) {
+        } else if (bot.dir == Bot.DIRNORTH) {
+            laser.setStyle("display:block; width:5;height:90;left:13;top:-70");
+        } else if (bot.dir == Bot.DIRWEST) {
             laser.setStyle("display:block; width:85;height:5;left:-75;top:13");
-        } else if(bot.dir == Bot.DIREAST) {
+        } else if (bot.dir == Bot.DIREAST) {
             laser.setStyle("display:block; width:90;height:5;left:20;top:13");
         }
         new Effect.Fade(laser, { duration: 0.5 });
@@ -111,12 +109,12 @@ function startBattle() {
     arena.drawArena($('playground'));
 
     robots.addBot(new Bot(new BotBrain1(), 12, 3, Bot.DIRNORTH));
-    robots.addBot(new Bot(new BotBrain2(), 10, 1, Bot.DIRSOUTH));
+    robots.addBot(new Bot(new BotBrain2(), 12, 4, Bot.DIRSOUTH));
 
 
     /* Just for testing */
     $('playground').observe('click', function() {
-	robots.gameLoop();
+        robots.gameLoop();
     });
 
 

@@ -49,6 +49,11 @@ function Robots(arena) {
                 newX += ((currentBot.dir - 3) * -1);
             }
 
+            if(this.checkForCrash(newY, newX)) {
+               currentBot.botBrain.blocked();
+               return; 
+            }
+
             currentBot.y = this.limitY(newY);
             currentBot.x = this.limitX(newX);
             this.arena.moveRobot(currentBot);
@@ -64,6 +69,11 @@ function Robots(arena) {
 
             this.arena.turnRobot(currentBot);
         } else if(command.look) {
+            try {
+                currentBot.botBrain.radar(this.bots);
+            } catch(e) {
+                
+            }
             this.arena.radar(currentBot);
         }
     }
@@ -89,6 +99,16 @@ function Robots(arena) {
         }
 
         return y;
+    }
+
+    this.checkForCrash = function(y, x) {
+        var i;
+        for (i in this.bots) {
+           if(this.bots[i].y == y && this.bots[i].x == x) {
+               return true;
+           }
+        }
+        return false;
     }
 
 }

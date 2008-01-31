@@ -4,22 +4,26 @@ function BotBrain1() {
     this.count = 0;
 
 	//Should return a Command object.
-	this.decide = function(bot) {
-		var command = new Command();
+    this.decide = function(bot) {
+        var command = new Command();
 
-		if (this.count % 4 == 0) {
+        if (this.count % 4 == 0) {
             command.turn = Command.TURNLEFT;
-		} else {
-			command.move = Command.MOVEFRONT;
-		}
+        } else {
+            command.move = Command.MOVEFRONT;
+        }
 
         this.count++;
-		return command;
-	}
+        return command;
+    }
 
-	this.hitted = function(hitInfo) {
-	}
+    this.hitted = function(hitInfo) {
+    }
 
-	this.radar = function(view) {
-	}
+    this.radar = function(bots) {
+    }
+
+    this.blocked = function() {
+
+    }
 }
