@@ -7,6 +7,11 @@ function BotBrain1() {
     this.decide = function(bot) {
         var command = new Command();
 
+        if(Math.random() > 0.8) {
+            command.shoot = true;
+            return command;
+        }
+
         if (this.count % 4 == 0) {
             command.turn = Command.TURNLEFT;
         } else {

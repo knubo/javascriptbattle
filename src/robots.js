@@ -31,8 +31,14 @@ function Robots(arena) {
         this.makeOrder();
         for (var i = 0; i < this.bots.length; i++) {
             var currentBot = this.bots[i];
-            var command = currentBot.botBrain.decide(currentBot);
-            this.performCommand(currentBot, command);
+            try {
+                var command = currentBot.botBrain.decide(currentBot);
+                this.performCommand(currentBot, command);
+            } catch(e) {
+                console.error('Failed in decide');
+                console.dir(e);
+                console.dir(currentBot.botBrain);
+            }
         }
     }
 
@@ -50,7 +56,13 @@ function Robots(arena) {
             }
 
             if(this.checkForCrash(newY, newX)) {
-               currentBot.botBrain.blocked();
+                try {
+                  currentBot.botBrain.blocked();
+                } catch(e) {
+                    console.error('Failed in blocked');
+                    console.dir(e);
+                    console.dir(currentBot.botBrain);
+                }
                return; 
             }
 
@@ -72,9 +84,13 @@ function Robots(arena) {
             try {
                 currentBot.botBrain.radar(this.bots);
             } catch(e) {
-                
+               console.error('Failed in radar');
+               console.dir(e);
+               console.dir(currentBot.botBrain);
             }
             this.arena.radar(currentBot);
+        } else if(command.shoot) {
+            this.arena.laser(currentBot);
         }
     }
 
