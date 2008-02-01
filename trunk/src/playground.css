@@ -92,11 +92,13 @@
 .controlContent {
     margin-left:20px;
 }
-.playertable {
+.playertable .controltable {
     margin-left: 20px;
     border-collapse: collapse;
 }
 
-.playertable thead th { border-bottom:2px solid darkslategray;}
+.playertable thead th, .controltable thead th{ border-bottom:2px solid darkslategray;}
 .playertable tbody td { border: 1px solid cadetblue; padding-left:5px;padding-right:5px;}
+.controltable tbody td { padding-left:5px;padding-right:5px;}
 
+.controltable input{ width:120px;}
