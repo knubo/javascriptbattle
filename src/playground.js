@@ -117,35 +117,41 @@ function Arena(width, height) {
     }
 }
 
+function runLoop() {
+    robots.gameLoop();
+
+    if(timerID) {
+        clearTimeout(timerID);
+    }
+    timerID = setTimeout("runLoop()", $('delay').getValue());
+}
+
+function stopLoop() {
+    if(timerID) {
+        clearTimeout(timerID);
+    }
+}
+
+var timerID;
+var arena;
+var robots;
 
 function startBattle() {
-    var arena = new Arena(20, 20);
-    var robots = new Robots(arena);
-
+    arena = new Arena(20, 20);
+    robots =  new Robots(arena);
     arena.drawArena($('playground'));
 
     robots.addBot(new Bot(new BotBrain1(), 12, 3, Bot.DIRNORTH));
     robots.addBot(new Bot(new BotBrain2(), 12, 4, Bot.DIRSOUTH));
 
-
     arena.updatePlayerInfo(robots.bots);
 
-    /* Just for testing */
-    $('playground').observe('click', function() {
-        robots.gameLoop();
+    $('startButton').observe('click', function() {
+        runLoop();
     });
 
-
-    var toWatch = robots.bots[0];
-
-    toWatch.img.observe('click', function() {
-        arena.laser(toWatch);
-    });
-
-    var toWatch2 = robots.bots[1];
-
-    toWatch2.img.observe('click', function() {
-        arena.explode(toWatch2);
+    $('pauseButton').observe('click', function() {
+        stopLoop();
     });
 
 }    

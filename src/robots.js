@@ -2,6 +2,7 @@ function Robots(arena) {
     this.bots = [];
     this.arena = arena;
 
+
     this.findBot = function (x, y) {
         for (var i = 0; i < this.bots.length; i++) {
             if (this.bots[i].x == x && this.bots[i].y == y) {

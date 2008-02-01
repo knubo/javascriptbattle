@@ -97,8 +97,8 @@
     border-collapse: collapse;
 }
 
-.playertable thead th, .controltable thead th{ border-bottom:2px solid darkslategray;}
+.playertable thead th, .controltable thead th{ border-bottom:2px solid darkslategray;text-align:center;}
 .playertable tbody td { border: 1px solid cadetblue; padding-left:5px;padding-right:5px;}
 .controltable tbody td { padding-left:5px;padding-right:5px;}
-
-.controltable input{ width:120px;}
+.controltable tbody th {text-align:left;}
+.button { width:120px;}
