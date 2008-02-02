@@ -2,7 +2,6 @@ function Robots(arena) {
     this.bots = [];
     this.arena = arena;
     this.boardElements = new Array(arena.height);
-
     for (var y = 0; y < arena.height; y++) {
         this.boardElements[y] = new Array(arena.width);
     }
@@ -51,18 +50,28 @@ function Robots(arena) {
         }
     }
 
+    this.nextY = function(posInfo) {
+        var newY = posInfo.y;
+        if (posInfo.dir == Bot.DIRNORTH || posInfo.dir == Bot.DIRSOUTH) {
+            newY += (posInfo.dir - 2);
+        }
+        return newY;
+    }
+
+    this.nextX = function(posInfo) {
+        var newX = posInfo.x;
+        if (posInfo.dir == Bot.DIRWEST || posInfo.dir == Bot.DIREAST) {
+            newX += ((posInfo.dir - 3) * -1);
+        }
+
+        return newX;
+    }
+
     this.performCommand = function(currentBot, command) {
         if (command.move) {
-            var newY = currentBot.y;
-            var newX = currentBot.x;
+            var newY = this.nextY(currentBot);
+            var newX = this.nextX(currentBot);
 
-            if (currentBot.dir == Bot.DIRNORTH || currentBot.dir == Bot.DIRSOUTH) {
-                newY += (currentBot.dir - 2);
-            }
-
-            if (currentBot.dir == Bot.DIRWEST || currentBot.dir == Bot.DIREAST) {
-                newX += ((currentBot.dir - 3) * -1);
-            }
 
             if (this.checkForCrash(newY, newX)) {
                 try {
@@ -142,18 +151,42 @@ function Robots(arena) {
         return false;
     }
 
+
+    /* If return false, the laser will go through to next robot. */
+    this.hurtRobotAt = function(shootingBot, y, x) {
+        var possibleTarget = this.boardElements[y][x];
+
+
+        if(possibleTarget) {
+            possibleTarget.health--;
+            this.arena.explode(possibleTarget);
+            //TODO try catch paranoia 
+            possibleTarget.botBrain.hurt(shootingBot);
+            shootingBot.botBrain.hit(possibleTarget);
+
+            this.arena.updateHealth(possibleTarget);
+            return false;
+        }
+
+        return false;    
+    }
+
     /* Returns how long the laser should be */
     this.robotShoots = function(currentBot) {
-        switch (currentBot.dir) {
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
+        var beam = new Object();
+        beam.dir = currentBot.dir;
+        beam.x = currentBot.x;
+        beam.y = currentBot.y;
+
+        /* 4 could be replaced with max length of beam */
+        for (i = 0; i < 4; i++) {
+            beam.y = this.nextY(beam);
+            beam.x = this.nextX(beam);
+            if (this.hurtRobotAt(currentBot, beam.y, beam.x)) {
+                return i + 1;
+            }
         }
+
         return 3;
     }
 }

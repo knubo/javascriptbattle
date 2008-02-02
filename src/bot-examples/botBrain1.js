@@ -22,9 +22,14 @@ function BotBrain1() {
         return command;
     }
 
-    this.hitted = function(hitInfo) {
+    this.hurt = function(shootingBot) {
+
     }
 
+    this.hit = function(hurtBot) {
+	}
+
+    
     this.radar = function(bots) {
     }
 
