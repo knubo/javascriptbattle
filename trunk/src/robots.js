@@ -25,7 +25,7 @@ function Robots(arena) {
         for (i in this.bots) {
             this.bots[i].pri = Math.random();
         }
-        this.bots.sort(function(a, b) {return a.pri - b.pri});
+        this.bots.sort(function(a, b) {return a.pri - b.pri});    
     }
 
     this.gameLoop = function() { 
@@ -91,6 +91,7 @@ function Robots(arena) {
             }
             this.arena.radar(currentBot);
         } else if(command.shoot) {
+            this.robotShoots(currentBot);
             this.arena.laser(currentBot);
         }
     }
@@ -106,7 +107,7 @@ function Robots(arena) {
 
         return x;
     }
-
+                                                                                               
     this.limitY = function(y) {
         if (y < 0) {
             return 0;
@@ -128,4 +129,7 @@ function Robots(arena) {
         return false;
     }
 
+    this.robotShoots = function(currentBot) {
+        
+    }
 }
