@@ -14,6 +14,17 @@ function Robots(arena) {
         }
     }
 
+    this.removeBot = function(bot) {
+
+        this.boardElements[bot.y][bot.x] = null;
+        for(i in this.bots) {
+            if(this.bots[i] === bot) {
+                this.bots.splice(i, 1);
+                return;
+            }
+        }
+    }
+
     this.addBot = function(bot) {
         this.bots.push(bot);
         this.arena.newBot(bot);
@@ -168,6 +179,12 @@ function Robots(arena) {
             shootingBot.botBrain.hit(possibleTarget);
 
             this.arena.updateHealth(possibleTarget);
+
+            if(possibleTarget.health == 0) {
+                this.arena.die(possibleTarget);
+                this.removeBot(possibleTarget);
+            }
+
             return false;
         }
 

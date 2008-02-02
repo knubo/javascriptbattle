@@ -90,6 +90,7 @@ function Arena(width, height) {
 
     this.die = function(bot) {                                                                                   
         bot.img.setStyle("display:none");
+        $("row"+bot.botBrain.name).setStyle("text-decoration: line-through;");
     }
 
     this.laser = function(bot, length) {
@@ -117,7 +118,7 @@ function Arena(width, height) {
         var res = '';
 
         for(i = 0; i < bots.length; i++) {
-            res+="<tr><td><img src='"+bots[i].botBrain.picUrl+"' class='robotImg'></td><td>";
+            res+="<tr id='row"+bots[i].botBrain.name+"'><td><img src='"+bots[i].botBrain.picUrl+"' class='robotImg'></td><td>";
             res+=bots[i].botBrain.name+'</td><td id="health'+bots[i].botBrain.name+'">';
             res+=bots[i].health+'</td></tr>';
         }
