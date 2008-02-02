@@ -1,7 +1,11 @@
 function Robots(arena) {
     this.bots = [];
     this.arena = arena;
+    this.boardElements = new Array(arena.height);
 
+    for (var y = 0; y < arena.height; y++) {
+        this.boardElements[y] = new Array(arena.width);
+    }
 
     this.findBot = function (x, y) {
         for (var i = 0; i < this.bots.length; i++) {
@@ -14,6 +18,8 @@ function Robots(arena) {
     this.addBot = function(bot) {
         this.bots.push(bot);
         this.arena.newBot(bot);
+
+        this.boardElements[bot.y][bot.x] = bot;
     }
 
     this.rnd = function(ceiling) {
@@ -25,10 +31,12 @@ function Robots(arena) {
         for (i in this.bots) {
             this.bots[i].pri = Math.random();
         }
-        this.bots.sort(function(a, b) {return a.pri - b.pri});    
+        this.bots.sort(function(a, b) {
+            return a.pri - b.pri
+        });
     }
 
-    this.gameLoop = function() { 
+    this.gameLoop = function() {
         this.makeOrder();
         for (var i = 0; i < this.bots.length; i++) {
             var currentBot = this.bots[i];
@@ -52,47 +60,52 @@ function Robots(arena) {
                 newY += (currentBot.dir - 2);
             }
 
-            if (currentBot.dir == Bot.DIRWEST || currentBot.dir == Bot.DIREAST) {               
+            if (currentBot.dir == Bot.DIRWEST || currentBot.dir == Bot.DIREAST) {
                 newX += ((currentBot.dir - 3) * -1);
             }
 
-            if(this.checkForCrash(newY, newX)) {
+            if (this.checkForCrash(newY, newX)) {
                 try {
-                  currentBot.botBrain.blocked();
+                    currentBot.botBrain.blocked();
                 } catch(e) {
                     console.error('Failed in blocked');
                     console.dir(e);
                     console.dir(currentBot.botBrain);
                 }
-               return; 
+                return;
             }
+
+            this.boardElements[currentBot.y][currentBot.x] = null;
 
             currentBot.y = this.limitY(newY);
             currentBot.x = this.limitX(newX);
+
+            this.boardElements[currentBot.y][currentBot.x] = currentBot;
+
             this.arena.moveRobot(currentBot);
-        } else if(command.turn) {
+        } else if (command.turn) {
             currentBot.dir += command.turn;
 
-            if(currentBot.dir < 1) {
+            if (currentBot.dir < 1) {
                 currentBot.dir = 4;
             }
-            if(currentBot.dir > 4) {
+            if (currentBot.dir > 4) {
                 currentBot.dir = 1;
             }
 
             this.arena.turnRobot(currentBot);
-        } else if(command.look) {
+        } else if (command.look) {
             try {
-                currentBot.botBrain.radar(this.bots);
+                currentBot.botBrain.radar(this.robots);
             } catch(e) {
-               console.error('Failed in radar');
-               console.dir(e);
-               console.dir(currentBot.botBrain);
+                console.error('Failed in radar');
+                console.dir(e);
+                console.dir(currentBot.botBrain);
             }
             this.arena.radar(currentBot);
-        } else if(command.shoot) {
-            this.robotShoots(currentBot);
-            this.arena.laser(currentBot);
+        } else if (command.shoot) {
+            var length = this.robotShoots(currentBot);
+            this.arena.laser(currentBot, length);
         }
     }
 
@@ -107,7 +120,7 @@ function Robots(arena) {
 
         return x;
     }
-                                                                                               
+
     this.limitY = function(y) {
         if (y < 0) {
             return 0;
@@ -122,14 +135,25 @@ function Robots(arena) {
     this.checkForCrash = function(y, x) {
         var i;
         for (i in this.bots) {
-           if(this.bots[i].y == y && this.bots[i].x == x) {
-               return true;
-           }
+            if (this.bots[i].y == y && this.bots[i].x == x) {
+                return true;
+            }
         }
         return false;
     }
 
+    /* Returns how long the laser should be */
     this.robotShoots = function(currentBot) {
-        
+        switch (currentBot.dir) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
+        return 3;
     }
 }

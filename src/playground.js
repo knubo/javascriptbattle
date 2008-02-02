@@ -66,7 +66,7 @@ function Arena(width, height) {
         div.insert(laser);
 
         this.turnRobot(bot);
-        this.moveRobot(bot, -1, -1);
+        this.moveRobot(bot, bot.y, bot.x);
 
 
         $('playground').insert(div);
@@ -92,7 +92,7 @@ function Arena(width, height) {
         bot.img.setStyle("display:none");
     }
 
-    this.laser = function(bot) {
+    this.laser = function(bot, length) {
         var laser = bot.laserImg;
 
         if (bot.dir == Bot.DIRSOUTH) {
