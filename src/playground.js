@@ -1,3 +1,8 @@
+var timerID;
+var arena;
+var robots;
+
+
 function Arena(width, height) {
     this.width = width;
     this.height = height;
@@ -132,10 +137,6 @@ function stopLoop() {
     }
 }
 
-var timerID;
-var arena;
-var robots;
-
 function startBattle() {
     arena = new Arena(20, 20);
     robots =  new Robots(arena);
@@ -143,6 +144,11 @@ function startBattle() {
 
     robots.addBot(new Bot(new BotBrain1(), 12, 3, Bot.DIRNORTH));
     robots.addBot(new Bot(new BotBrain2(), 12, 4, Bot.DIRSOUTH));
+    robots.addBot(new Bot(new RandomBotBrain("Random 1"), 10, 6, Bot.DIRSOUTH));
+    robots.addBot(new Bot(new RandomBotBrain("Random 2"), 11, 8, Bot.DIRSOUTH));
+    robots.addBot(new Bot(new RandomBotBrain("Random 3"), 9, 8, Bot.DIRSOUTH));
+    robots.addBot(new Bot(new RandomBotBrain("Random 4"), 8, 7, Bot.DIRSOUTH));
+    robots.addBot(new Bot(new RandomBotBrain("Random 5"), 7, 8, Bot.DIRSOUTH));
 
     arena.updatePlayerInfo(robots.bots);
 
