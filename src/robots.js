@@ -154,6 +154,9 @@ function Robots(arena) {
 
     /* If return false, the laser will go through to next robot. */
     this.hurtRobotAt = function(shootingBot, y, x) {
+        if(y >= this.arena.height || y < 0 || x < 0 || x > this.arena.width) {
+            return true; /* Out of bounds */
+        }
         var possibleTarget = this.boardElements[y][x];
 
 
