@@ -27,6 +27,7 @@ function Arena(width, height) {
     }
 
     this.drawArena = function (target) {
+        target.innerHTML = "";
         var table = new Element('table', {'class':'arena'});
 
         target.insert(table);
@@ -144,20 +145,26 @@ function stopLoop() {
     }
 }
 
-function startBattle() {
+function init() {
     arena = new Arena(20, 20);
     robots =  new Robots(arena);
     arena.drawArena($('playground'));
 
-    robots.addBot(new Bot(new BotBrain1(), 12, 3, Bot.DIRNORTH));
-    robots.addBot(new Bot(new BotBrain2(), 12, 4, Bot.DIRSOUTH));
-    robots.addBot(new Bot(new RandomBotBrain("Random 1"), 10, 6, Bot.DIRSOUTH));
-    robots.addBot(new Bot(new RandomBotBrain("Random 2"), 11, 8, Bot.DIRSOUTH));
-    robots.addBot(new Bot(new RandomBotBrain("Random 3"), 9, 8, Bot.DIRSOUTH));
-    robots.addBot(new Bot(new RandomBotBrain("Random 4"), 8, 7, Bot.DIRSOUTH));
-    robots.addBot(new Bot(new RandomBotBrain("Random 5"), 7, 8, Bot.DIRSOUTH));
+    robots.addBotRandomLocation(new BotBrain1());
+    robots.addBotRandomLocation(new BotBrain2());
+    robots.addBotRandomLocation(new RandomBotBrain("Random 1"));
+    robots.addBotRandomLocation(new RandomBotBrain("Random 2"));
+    robots.addBotRandomLocation(new RandomBotBrain("Random 3"));
+    robots.addBotRandomLocation(new RandomBotBrain("Random 4"));
+    robots.addBotRandomLocation(new RandomBotBrain("Random 5"));
+    robots.addBotRandomLocation(new RandomBotBrain("Random 6"));
+    robots.addBotRandomLocation(new RandomBotBrain("Random 7"));
 
     arena.updatePlayerInfo(robots.bots);
+}
+
+function setupBattle() {
+    init();
 
     $('startButton').observe('click', function() {
         runLoop();
@@ -165,6 +172,11 @@ function startBattle() {
 
     $('pauseButton').observe('click', function() {
         stopLoop();
+    });
+
+    $('restartButton').observe('click', function() {
+        stopLoop();
+        init();
     });
 
 }    

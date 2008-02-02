@@ -1,5 +1,5 @@
 
-function BotBrain2(picUrl, name) {
+function BotBrain2() {
     this.name = 'Knut Erik';
     this.picUrl = 'images/keb.jpg';
     this.count= 0;

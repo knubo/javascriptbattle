@@ -17,12 +17,25 @@ function Robots(arena) {
     this.removeBot = function(bot) {
 
         this.boardElements[bot.y][bot.x] = null;
-        for(i in this.bots) {
-            if(this.bots[i] === bot) {
+        for (i in this.bots) {
+            if (this.bots[i] === bot) {
                 this.bots.splice(i, 1);
                 return;
             }
         }
+    }
+
+    this.addBotRandomLocation = function(botbrain) {
+        var posy;
+        var posx;
+
+        do {
+            posy = Math.floor(Math.random() * this.arena.height);
+            posx = Math.floor(Math.random() * this.arena.width);
+        } while (this.checkForCrash(posy, posx));
+
+        this.addBot(new Bot(botbrain, posy, posx, Math.floor(Math.random(4)) + 1));
+
     }
 
     this.addBot = function(bot) {
@@ -153,25 +166,20 @@ function Robots(arena) {
     }
 
     this.checkForCrash = function(y, x) {
-        var i;
-        for (i in this.bots) {
-            if (this.bots[i].y == y && this.bots[i].x == x) {
-                return true;
-            }
-        }
-        return false;
+        return this.boardElements[y][x] != null
     }
 
 
     /* If return false, the laser will go through to next robot. */
     this.hurtRobotAt = function(shootingBot, y, x) {
-        if(y >= this.arena.height || y < 0 || x < 0 || x > this.arena.width) {
-            return true; /* Out of bounds */
+        if (y >= this.arena.height || y < 0 || x < 0 || x > this.arena.width) {
+            return true;
+            /* Out of bounds */
         }
         var possibleTarget = this.boardElements[y][x];
 
 
-        if(possibleTarget) {
+        if (possibleTarget) {
             possibleTarget.health--;
             this.arena.explode(possibleTarget);
             //TODO try catch paranoia 
@@ -180,7 +188,7 @@ function Robots(arena) {
 
             this.arena.updateHealth(possibleTarget);
 
-            if(possibleTarget.health == 0) {
+            if (possibleTarget.health == 0) {
                 this.arena.die(possibleTarget);
                 this.removeBot(possibleTarget);
             }
@@ -188,7 +196,7 @@ function Robots(arena) {
             return false;
         }
 
-        return false;    
+        return false;
     }
 
     /* Returns how long the laser should be */
