@@ -146,7 +146,7 @@ function stopLoop() {
 }
 
 function init() {
-    arena = new Arena(20, 20);
+    arena = new Arena($('playgroundHeight').getValue(), $('playgroundWidth').getValue());
     robots =  new Robots(arena);
     arena.drawArena($('playground'));
 
