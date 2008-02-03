@@ -89,16 +89,20 @@ function Arena(width, height) {
         new Effect.Fade(radar);
     }
 
-    this.die = function(bot) {                                                                                   
+    this.die = function(bot) {
         bot.img.setStyle("display:none");
 //        $("row"+bot.botBrain.name).setStyle("text-decoration: line-through;");
-        $("img"+bot.botBrain.name).src = "images/skull.png";
+        $("img" + bot.botBrain.name).src = "images/skull.png";
+    }
+
+    this.winner = function(bot) {
+        alert(bot.botBrain.name + " wins!");
     }
 
     this.laser = function(bot, length) {
-        var laser = bot.laserImg;                                                                    
+        var laser = bot.laserImg;
 
-        if (bot.dir == Bot.DIRSOUTH) {                                               
+        if (bot.dir == Bot.DIRSOUTH) {
             laser.setStyle("display:block; width:5;height:85;left:13;top:25");
         } else if (bot.dir == Bot.DIRNORTH) {
             laser.setStyle("display:block; width:5;height:90;left:13;top:-70");
@@ -112,18 +116,18 @@ function Arena(width, height) {
     }
 
     this.updateHealth = function(bot) {
-        $('health'+bot.botBrain.name).innerHTML = bot.health;
+        $('health' + bot.botBrain.name).innerHTML = bot.health;
     }
 
     this.updatePlayerInfo = function(bots) {
 
         var res = '';
 
-        for(i = 0; i < bots.length; i++) {
-            res+="<tr id='row"+bots[i].botBrain.name+"'><td><img src='"+bots[i].botBrain.picUrl+
-                 "' id='img"+bots[i].botBrain.name+"' class='robotImg' ></td><td>";
-            res+=bots[i].botBrain.name+'</td><td id="health'+bots[i].botBrain.name+'">';
-            res+=bots[i].health+'</td></tr>';
+        for (i = 0; i < bots.length; i++) {
+            res += "<tr id='row" + bots[i].botBrain.name + "'><td><img src='" + bots[i].botBrain.picUrl +
+                   "' id='img" + bots[i].botBrain.name + "' class='robotImg' ></td><td>";
+            res += bots[i].botBrain.name + '</td><td id="health' + bots[i].botBrain.name + '">';
+            res += bots[i].health + '</td></tr>';
         }
 
         $('playerlist').innerHTML = res;
@@ -133,21 +137,28 @@ function Arena(width, height) {
 function runLoop() {
     robots.gameLoop();
 
-    if(timerID) {
+    if (timerID) {
         clearTimeout(timerID);
     }
+
+    if (robots.bots.length == 1) {
+        stopLoop();
+        arena.winner(robots.bots[0]);
+        return;
+    }
+
     timerID = setTimeout("runLoop()", $('delay').getValue());
 }
 
 function stopLoop() {
-    if(timerID) {
+    if (timerID) {
         clearTimeout(timerID);
     }
 }
 
 function init() {
     arena = new Arena($('playgroundHeight').getValue(), $('playgroundWidth').getValue());
-    robots =  new Robots(arena);
+    robots = new Robots(arena);
     arena.drawArena($('playground'));
 
     robots.addBotRandomLocation(new BotBrain1());
