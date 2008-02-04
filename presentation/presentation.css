@@ -1,0 +1,30 @@
+
+#footer {
+    position:absolute;
+    bottom:20px;
+    float:left;
+}
+
+#everything {
+    padding-top: 20px;
+    padding-left: 10%;
+}
+
+.presentation {
+    float: left;
+    width: 85%;
+    min-height:560px;
+    background: url( gfx/shadow.gif ) no-repeat bottom right;
+}
+
+#presentationInner {
+    min-height:550px;
+    background-color: #fff;
+    border: 1px solid #a9a9a9;
+    padding: 20px;
+    margin: -6px 6px 6px -6px !important;
+}
+
+#pageNumber {
+    margin-right:10px;margin-top:7px;
+}
