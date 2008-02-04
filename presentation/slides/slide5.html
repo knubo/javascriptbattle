@@ -1,0 +1,32 @@
+<h1>Praktisk oppgave</h1>
+
+Skriv en robot til...
+
+<div style="text-align:center;display:none;" id="appear">
+    <img src="gfx/JavascriptBattle.jpg" alt=""/>
+</div>
+
+<div id="subtext" style="display:none;margin-top:40px;margin-left:140px;margin-right:100px;">
+    <p>
+        ...en vennlig kamp p&aring; liv og d&oslash;d med &aelig;re og ber&oslash;mmelse. Skrevet i Javascript.
+    </p>
+</div>
+<script type="text/javascript">
+
+    var point = 0;
+
+    var show = function show() {
+
+        if (point == 0) {
+            new Effect.Appear('appear');
+            point++;
+            timerID = setTimeout(show, 3000);
+        } else if (point == 1) {
+            new Effect.Appear('subtext');
+            clearTimeout(timerID);
+        }
+    }
+
+    var timerID = setTimeout(show, 3000);
+
+</script>

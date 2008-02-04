@@ -1,7 +1,7 @@
 var currentSlide = 1;
 
 function loadSlide() {
-    new Ajax.Updater('presentationInner', "slides/slide" + currentSlide + ".html");
+    new Ajax.Updater('presentationInner', "slides/slide" + currentSlide + ".html", {evalScripts:true});
     $('pageNumber').innerHTML = currentSlide;
 }
 
