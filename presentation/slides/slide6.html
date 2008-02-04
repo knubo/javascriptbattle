@@ -1,0 +1,26 @@
+Robot API
+<code><pre>
+    function MyBotBrain() {
+       this.name = 'Klaus';
+       this.picUrl = 'images/kst.jpg';
+       this.count = 0;
+
+       //Should return a Command object.
+       this.decide = function(bot) {
+          var command = new Command();
+          return command;
+       }
+
+       this.hurt = function(shootingBot) {
+       }
+
+       this.hit = function(hurtBot) {
+       }
+
+       this.radar = function(bots) {
+       }
+
+       this.blocked = function() {
+       }
+    }
+</pre></code>
