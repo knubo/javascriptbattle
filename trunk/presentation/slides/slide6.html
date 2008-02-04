@@ -1,26 +1,27 @@
-Robot API
+<span style="text-decoration:underline;">Robot API</span>
 <code><pre>
-    function MyBotBrain() {
-       this.name = 'Klaus';
-       this.picUrl = 'images/kst.jpg';
-       this.count = 0;
+    <font color="darkblue">function</font> MyBotBrain() {
+       <font color="darkblue">this</font>.name = '<font color="green">Klaus</font>';
+       <font color="darkblue">this</font>.picUrl = '<font color="green">images/kst.jpg</font>';
 
-       //Should return a Command object.
-       this.decide = function(bot) {
-          var command = new Command();
-          return command;
+       <font color="gray">//Should return a Command object.</font>
+       <font color="darkblue">this</font>.decide = <font color="darkblue">function</font>(bot) {
+          <font color="darkblue">var</font> command = <font color="darkblue">new</font> Command();
+          <font color="darkblue">return</font> command;
        }
 
-       this.hurt = function(shootingBot) {
+       <font color="darkblue">this</font>.hurt = <font color="darkblue">function</font>(shootingBot) {
        }
 
-       this.hit = function(hurtBot) {
+       <font color="darkblue">this</font>.hit = <font color="darkblue">function</font>(hurtBot) {
        }
 
-       this.radar = function(bots) {
+       <font color="darkblue">this</font>.radar = <font color="darkblue">function</font>(bots) {
        }
 
-       this.blocked = function() {
+       <font color="darkblue">this</font>.blocked = <font color="darkblue">function</font>() {
        }
+
+       <font color="gray">/* + whatever code you need to win... */</font>
     }
 </pre></code>
