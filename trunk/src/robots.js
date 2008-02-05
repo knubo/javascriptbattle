@@ -1,9 +1,11 @@
 function Robots(arena) {
     this.bots = [];
     this.arena = arena;
-    this.boardElements = new Array(arena.height);
+    this.boardElements = new Array();
+    this.turn = 0;
+
     for (var y = 0; y < arena.height; y++) {
-        this.boardElements[y] = new Array(arena.width);
+        this.boardElements[y] = new Array(Math.floor(arena.width));
     }
 
     this.findBot = function (x, y) {
@@ -35,7 +37,23 @@ function Robots(arena) {
         } while (this.checkForCrash(posy, posx));
 
         this.addBot(new Bot(botbrain, posy, posx, Math.floor(Math.random(4)) + 1));
+    }
 
+    this.moveBotRandomLocation = function(bot) {
+        var posy;
+        var posx;
+
+        do {
+            posy = Math.floor(Math.random() * this.arena.height);
+            posx = Math.floor(Math.random() * this.arena.width);
+        } while (this.checkForCrash(posy, posx));
+
+        this.boardElements[bot.y][bot.x] = null;
+        bot.y = posy;
+        bot.x = posx;
+        this.boardElements[bot.y][bot.x] = bot;
+
+        this.arena.moveRobot(bot);
     }
 
     this.addBot = function(bot) {
@@ -71,6 +89,11 @@ function Robots(arena) {
                 console.dir(e);
                 console.dir(currentBot.botBrain);
             }
+        }
+        this.turn++;
+
+        if ((this.turn % 5) == 0) {
+            this.teleportFromCorners();
         }
     }
 
@@ -110,8 +133,8 @@ function Robots(arena) {
 
             this.boardElements[currentBot.y][currentBot.x] = null;
 
-            currentBot.y = this.limitY(newY);
-            currentBot.x = this.limitX(newX);
+            currentBot.y = newY;
+            currentBot.x = newX;
 
             this.boardElements[currentBot.y][currentBot.x] = currentBot;
 
@@ -143,32 +166,47 @@ function Robots(arena) {
     }
 
 
-    this.limitX = function(x) {
+    /* Returns crash if out of bounds */
+    this.checkForCrash = function(y, x) {
         if (x < 0) {
-            return 0;
+            return true;
         }
         if (x > this.arena.width - 1) {
-            return this.arena.width - 1;
+            return true;
         }
 
-        return x;
-    }
-
-    this.limitY = function(y) {
         if (y < 0) {
-            return 0;
+            return true;
         }
         if (y > this.arena.height - 1) {
-            return this.arena.height - 1;
+            return true;
         }
 
-        return y;
+        return this.boardElements[y][x] != null;
     }
 
-    this.checkForCrash = function(y, x) {
-        return this.boardElements[y][x] != null
-    }
+    this.teleportFromCorners = function() {
 
+        var possibleTarget = this.boardElements[0][0];
+        if (possibleTarget) {
+            this.moveBotRandomLocation(possibleTarget);
+        }
+
+        possibleTarget = this.boardElements[0][this.arena.width - 1];
+        if (possibleTarget) {
+            this.moveBotRandomLocation(possibleTarget);
+        }
+
+        possibleTarget = this.boardElements[this.arena.height - 1][this.arena.width - 1];
+        if (possibleTarget) {
+            this.moveBotRandomLocation(possibleTarget);
+        }
+
+        possibleTarget = this.boardElements[this.arena.height - 1][0];
+        if (possibleTarget) {
+            this.moveBotRandomLocation(possibleTarget);
+        }
+    }
 
     /* If return false, the laser will go through to next robot. */
     this.hurtRobotAt = function(shootingBot, y, x) {
