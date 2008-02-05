@@ -18,12 +18,16 @@ Skriv en robot til...
     var show = function show() {
 
         if (point == 0) {
-            new Effect.Appear('appear');
-            point++;
-            timerID = setTimeout(show, 3000);
+            if($('appear')) {
+                new Effect.Appear('appear');
+                point++;
+                timerID = setTimeout(show, 3000);
+            }
         } else if (point == 1) {
-            new Effect.Appear('subtext');
-            clearTimeout(timerID);
+            if($('subtext')) {
+                new Effect.Appear('subtext');
+                clearTimeout(timerID);
+            }
         }
     }
 

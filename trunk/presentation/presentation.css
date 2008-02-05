@@ -33,3 +33,23 @@
 body {
     font-size:x-large;
 }
+
+#timetable {
+    border-collapse:collapse;
+
+}
+
+#timetable td {
+    padding:4px;
+    border-bottom: 1px solid coral;
+}
+
+#timetable th {
+    border-right: 1px solid coral;    
+    border-bottom: 1px solid coral;
+    text-align:left;
+    font-weight:normal;
+}
+#timetable .time {
+    text-align:right;
+}
