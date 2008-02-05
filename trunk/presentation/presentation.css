@@ -38,14 +38,14 @@ body {
     border-collapse:collapse;
     margin-left:120px;
 }
-                                                                                                                
+
 #timetable td {
     padding:4px;
     border-bottom: 1px solid coral;
 }
 
 #timetable th {
-    border-right: 1px solid coral;    
+    border-right: 1px solid coral;
     border-bottom: 1px solid coral;
     text-align:left;
     font-weight:normal;
@@ -54,15 +54,13 @@ body {
     text-align:right;
 }
 
+H1 {
+    font-family:fantasy;
+}
+
 UL {
     margin-top:0px;
 }
-H1 {
-    font-family:fantasy;
-    margin-bottom:0px;
-}
-
-
 H2 {
     text-decoration:underline;
     font-size:x-large;
