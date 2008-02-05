@@ -36,9 +36,9 @@ body {
 
 #timetable {
     border-collapse:collapse;
-
+    margin-left:120px;
 }
-
+                                                                                                                
 #timetable td {
     padding:4px;
     border-bottom: 1px solid coral;
@@ -54,9 +54,14 @@ body {
     text-align:right;
 }
 
+UL {
+    margin-top:0px;
+}
 H1 {
     font-family:fantasy;
+    margin-bottom:0px;
 }
+
 
 H2 {
     text-decoration:underline;
