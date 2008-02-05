@@ -1,3 +1,6 @@
+/* Define this and save a warning. Will be redefined and set by firebug. */
+var console;
+
 function Robots(arena) {
     this.bots = [];
     this.arena = arena;
@@ -19,6 +22,7 @@ function Robots(arena) {
     this.removeBot = function(bot) {
 
         this.boardElements[bot.y][bot.x] = null;
+        var i;
         for (i in this.bots) {
             if (this.bots[i] === bot) {
                 this.bots.splice(i, 1);
@@ -245,6 +249,7 @@ function Robots(arena) {
         beam.y = currentBot.y;
 
         /* 4 could be replaced with max length of beam */
+        var i;
         for (i = 0; i < 4; i++) {
             beam.y = this.nextY(beam);
             beam.x = this.nextX(beam);
