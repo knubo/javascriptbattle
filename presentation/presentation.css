@@ -53,3 +53,17 @@ body {
 #timetable .time {
     text-align:right;
 }
+
+H1 {
+    font-family:fantasy;
+}
+
+H2 {
+    text-decoration:underline;
+    font-size:x-large;
+}
+
+LI {
+    list-style-image:url("gfx/bulletRed.jpg");
+    padding-top:20px;Ê
+}
