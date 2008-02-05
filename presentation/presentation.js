@@ -1,5 +1,8 @@
 var currentSlide = 1;
 
+/* Define this and save a warning. Will be redefined and set by firebug. */
+var console;
+
 function loadSlide() {
     new Ajax.Updater('presentationInner', "slides/slide" + currentSlide + ".html", {evalScripts:true});
     $('pageNumber').innerHTML = currentSlide;
