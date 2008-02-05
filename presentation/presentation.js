@@ -5,6 +5,10 @@ function loadSlide() {
     $('pageNumber').innerHTML = currentSlide;
 }
 
+function lastSlide() {
+    return $('presentationInner').innerHTML.match("@LastSlide@");
+}
+
 function doSomethingCool() {
 
 }
@@ -14,7 +18,7 @@ function setup() {
 
     document['onkeypress'] = function(e) {
 
-        if (e.charCode == 32 || e.keyCode == 39 || e.charCode == 110) {
+        if (!lastSlide() && (e.charCode == 32 || e.keyCode == 39 || e.charCode == 110)) {
             currentSlide++;
             loadSlide();
             doSomethingCool();
