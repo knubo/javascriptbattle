@@ -79,6 +79,12 @@ function setup() {
             return;
         }
 
+        if(e.keyCode == 27) {
+            $('pageselect').setStyle("display:none;");
+            Event.stop(e);
+            return;            
+        }
+
         if (!lastSlide() && (e.charCode == 32 || e.keyCode == 39 || e.charCode == 110)) {
             currentSlide++;
             loadSlide();
