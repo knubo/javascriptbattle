@@ -17,6 +17,25 @@
     background: url( gfx/shadow.gif ) no-repeat bottom right;
 }
 
+#pageselect {
+    position:absolute;
+    top:250px;
+    left:380px;
+    z-index:10;
+    background-color:darkred;
+}
+
+.psInner {
+    background-color:white;
+    margin:20px;
+}
+
+.quickJumpHeading {
+    color:white;
+    text-align:center;
+    margin-top:20px;
+}
+
 #presentationInner {
     min-height:550px;
     background-color: #fff;
@@ -30,9 +49,14 @@
 }
 
 
-body {
+.large {
     font-size:x-large;
 }
+
+.small {
+    font-size:xx-small;
+}
+
 
 #timetable {
     border-collapse:collapse;
@@ -61,8 +85,11 @@ H1 {
 UL {
     margin-top:0;
 }
+
 H2 {
-    text-decoration:underline;
+    text-decoration:underline;    
+}
+.large H2 {
     font-size:x-large;
 }
 
