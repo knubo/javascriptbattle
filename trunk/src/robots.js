@@ -86,7 +86,7 @@ function Robots(arena) {
         for (var i = 0; i < this.bots.length; i++) {
             var currentBot = this.bots[i];
             try {
-                var command = currentBot.botBrain.decide(currentBot);
+                var command = currentBot.botBrain.decide(Object.clone(currentBot));
                 this.performCommand(currentBot, command);
             } catch(e) {
                 console.error('Failed in decide');
@@ -155,8 +155,15 @@ function Robots(arena) {
 
             this.arena.turnRobot(currentBot);
         } else if (command.look) {
+            var clonedList = new Array(this.robots.length);
+
+            var i;
+            for (i in this.robots) {
+                clonedList.push(Object.clone(robots[i]));
+            }
+
             try {
-                currentBot.botBrain.radar(this.robots);
+                currentBot.botBrain.radar(clonedList);
             } catch(e) {
                 console.error('Failed in radar');
                 console.dir(e);
@@ -224,9 +231,23 @@ function Robots(arena) {
         if (possibleTarget) {
             possibleTarget.health--;
             this.arena.explode(possibleTarget);
-            //TODO try catch paranoia 
-            possibleTarget.botBrain.hurt(shootingBot);
-            shootingBot.botBrain.hit(possibleTarget);
+
+            try {
+                possibleTarget.botBrain.hurt(Object.clone(shootingBot));
+            } catch(e) {
+                console.error('Failed in hurt');
+                console.dir(e);
+                console.dir(possibleTarget.botBrain);
+
+            }
+            try {
+                shootingBot.botBrain.hit(Object.clone(possibleTarget));
+            } catch(e) {
+                console.error('Failed in hit');
+                console.dir(e);
+                console.dir(shootingBot.botBrain);
+
+            }
 
             this.arena.updateHealth(possibleTarget);
 
