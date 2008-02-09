@@ -40,6 +40,8 @@ function Robots(arena) {
             posx = Math.floor(Math.random() * this.arena.width);
         } while (this.checkForCrash(posy, posx));
 
+        botbrain.boardInfo()
+
         this.addBot(new Bot(botbrain, posy, posx, Math.floor(Math.random(4)) + 1));
     }
 
@@ -86,7 +88,7 @@ function Robots(arena) {
         for (var i = 0; i < this.bots.length; i++) {
             var currentBot = this.bots[i];
             try {
-                var command = currentBot.botBrain.decide(Object.clone(currentBot));
+                var command = currentBot.botBrain.decide(this.clone(currentBot));
                 this.performCommand(currentBot, command);
             } catch(e) {
                 console.error('Failed in decide');
@@ -155,11 +157,11 @@ function Robots(arena) {
 
             this.arena.turnRobot(currentBot);
         } else if (command.look) {
-            var clonedList = new Array(this.robots.length);
+            var clonedList = new Array(this.bots.length);
 
             var i;
-            for (i in this.robots) {
-                clonedList.push(Object.clone(robots[i]));
+            for (i in this.bots) {
+                clonedList.push(this.clone(robots[i]));
             }
 
             try {
@@ -176,6 +178,12 @@ function Robots(arena) {
         }
     }
 
+    this.clone = function(bot) {
+        var c = Object.clone(bot);
+        c.botBrain = null;
+
+        return c;
+    }
 
     /* Returns crash if out of bounds */
     this.checkForCrash = function(y, x) {
@@ -233,7 +241,7 @@ function Robots(arena) {
             this.arena.explode(possibleTarget);
 
             try {
-                possibleTarget.botBrain.hurt(Object.clone(shootingBot));
+                possibleTarget.botBrain.hurt(this.clone(shootingBot));
             } catch(e) {
                 console.error('Failed in hurt');
                 console.dir(e);
@@ -241,7 +249,7 @@ function Robots(arena) {
 
             }
             try {
-                shootingBot.botBrain.hit(Object.clone(possibleTarget));
+                shootingBot.botBrain.hit(this.clone(possibleTarget));
             } catch(e) {
                 console.error('Failed in hit');
                 console.dir(e);

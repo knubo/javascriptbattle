@@ -41,4 +41,9 @@ function RandomBotBrain(name) {
 
     }
 
+    this.boardInfo = function(height, width) {
+
+    }
+
+
 }
