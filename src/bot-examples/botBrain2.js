@@ -2,7 +2,7 @@
 function BotBrain2() {
     this.name = 'Knut Erik';
     this.picUrl = 'images/keb.jpg';
-    this.count= 0;
+    this.roundCount= 0;
 
     //Should return a Command object.
 	this.decide = function(bot) {
@@ -15,13 +15,13 @@ function BotBrain2() {
         }
 
 
-        if (this.count % 4 == 0) {
+        if (this.roundCount % 4 == 0) {
             command.turn = Command.TURNRIGHT;
         } else {
             command.move = Command.MOVEFRONT;
         }
 
-        this.count++;
+        this.roundCount++;
         return command;
 	}
 
@@ -40,4 +40,8 @@ function BotBrain2() {
 
     }
 
+    this.boardInfo = function(height, width) {
+
+    }
+    
 }

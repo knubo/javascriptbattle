@@ -1,7 +1,7 @@
 function BotBrain1() {
     this.name = 'Klaus';
     this.picUrl = 'images/kst.jpg';
-    this.count = 0;
+    this.roundCount = 0;
 
 	//Should return a Command object.
     this.decide = function(bot) {
@@ -12,13 +12,13 @@ function BotBrain1() {
             return command;
         }
 
-        if (this.count % 4 == 0) {
+        if (this.roundCount % 4 == 0) {
             command.turn = Command.TURNLEFT;
         } else {
             command.move = Command.MOVEFRONT;
         }
 
-        this.count++;
+        this.roundCount++;
         return command;
     }
 
@@ -36,4 +36,9 @@ function BotBrain1() {
     this.blocked = function() {
 
     }
+
+    this.boardInfo = function(height, width) {
+
+    }
+    
 }

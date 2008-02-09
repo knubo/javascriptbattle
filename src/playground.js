@@ -23,7 +23,6 @@ function Arena(width, height) {
         var cellPosition = cellToMoveTo.viewportOffset();
 
         new Effect.Move(theBot.img, {y:cellPosition.top, x:cellPosition.left , mode: 'absolute'});
-
     }
 
     this.drawArena = function (target) {
