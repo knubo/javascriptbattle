@@ -11,14 +11,6 @@ function Robots(arena) {
         this.boardElements[y] = new Array(Math.floor(arena.width));
     }
 
-    this.findBot = function (x, y) {
-        for (var i = 0; i < this.bots.length; i++) {
-            if (this.bots[i].x == x && this.bots[i].y == y) {
-                return this.bots[i];
-            }
-        }
-    }
-
     this.removeBot = function(bot) {
 
         this.boardElements[bot.y][bot.x] = null;
@@ -88,6 +80,7 @@ function Robots(arena) {
         for (var i = 0; i < this.bots.length; i++) {
             var currentBot = this.bots[i];
             try {
+                //var surroundings = this.findSurroundingBots(currentBot);
                 var command = currentBot.botBrain.decide(this.clone(currentBot));
                 this.performCommand(currentBot, command);
             } catch(e) {
@@ -101,6 +94,48 @@ function Robots(arena) {
         if ((this.turn % 5) == 0) {
             this.teleportFromCorners();
         }
+    }
+
+    this.findSurroundingBots = function(bot) {
+        var starty = bot.y - 3;
+        var startx = bot.x - 3;
+
+        if (starty < 0) {
+            starty = 0;
+        }
+
+        if ((starty + 6) > (this.arena.height - 1)) {
+            starty = this.arena.height - 6;
+        }
+
+        if (startx < 0) {
+            startx = 0;
+        }
+
+        if ((startx + 6) > (this.arena.width - 1)) {
+            startx = this.arena.width - 6;
+        }
+
+        var itemFound = new Array();
+
+        var lookX;
+        var lookY;
+
+
+        for(lookY = starty; lookY < starty + 6; lookY++) {
+            for(lookX = startx; lookX < startx + 6; lookX++) {
+
+                /* Skip self */
+                if(bot.x == lookX && bot.y == lookY) {
+                    continue;
+                }
+                if(this.boardElements[lookY][lookX]) {
+                    itemFound.push(this.clone(this.boardElements[lookY][lookX]));
+                }
+            }        
+        }
+
+        return itemFound;
     }
 
     this.nextY = function(posInfo) {
