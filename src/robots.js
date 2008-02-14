@@ -75,6 +75,11 @@ function Robots(arena) {
         });
     }
 
+    this.verifyCommand = function(command) {
+        //TODO
+        return 1;
+    }
+
     this.gameLoop = function() {
         this.makeOrder();
         for (var i = 0; i < this.bots.length; i++) {
@@ -82,7 +87,11 @@ function Robots(arena) {
             try {
                 //var surroundings = this.findSurroundingBots(currentBot);
                 var command = currentBot.botBrain.decide(this.clone(currentBot));
-                this.performCommand(currentBot, command);
+
+                command = Object.clone(command);
+                if (this.verifyCommand(command)) {
+                    this.performCommand(currentBot, command);
+                }
             } catch(e) {
                 console.error('Failed in decide');
                 console.dir(e);
@@ -122,17 +131,17 @@ function Robots(arena) {
         var lookY;
 
 
-        for(lookY = starty; lookY < starty + 6; lookY++) {
-            for(lookX = startx; lookX < startx + 6; lookX++) {
+        for (lookY = starty; lookY < starty + 6; lookY++) {
+            for (lookX = startx; lookX < startx + 6; lookX++) {
 
                 /* Skip self */
-                if(bot.x == lookX && bot.y == lookY) {
+                if (bot.x == lookX && bot.y == lookY) {
                     continue;
                 }
-                if(this.boardElements[lookY][lookX]) {
+                if (this.boardElements[lookY][lookX]) {
                     itemFound.push(this.clone(this.boardElements[lookY][lookX]));
                 }
-            }        
+            }
         }
 
         return itemFound;
@@ -157,29 +166,33 @@ function Robots(arena) {
 
     this.performCommand = function(currentBot, command) {
         if (command.move) {
-            var newY = this.nextY(currentBot);
-            var newX = this.nextX(currentBot);
+            do {
+                var newY = this.nextY(currentBot);
+                var newX = this.nextX(currentBot);
 
-
-            if (this.checkForCrash(newY, newX)) {
-                try {
-                    currentBot.botBrain.blocked();
-                } catch(e) {
-                    console.error('Failed in blocked');
-                    console.dir(e);
-                    console.dir(currentBot.botBrain);
+                if (this.checkForCrash(newY, newX)) {
+                    try {
+                        currentBot.botBrain.blocked();
+                    } catch(e) {
+                        console.error('Failed in blocked');
+                        console.dir(e);
+                        console.dir(currentBot.botBrain);
+                    }
+                    this.arena.moveRobot(currentBot);
+                    return;
                 }
-                return;
-            }
 
-            this.boardElements[currentBot.y][currentBot.x] = null;
+                this.boardElements[currentBot.y][currentBot.x] = null;
 
-            currentBot.y = newY;
-            currentBot.x = newX;
+                currentBot.y = newY;
+                currentBot.x = newX;
 
-            this.boardElements[currentBot.y][currentBot.x] = currentBot;
+                this.boardElements[currentBot.y][currentBot.x] = currentBot;
+
+            } while (--command.move > 0);
 
             this.arena.moveRobot(currentBot);
+
         } else if (command.turn) {
             currentBot.dir += command.turn;
 
