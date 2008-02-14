@@ -18,7 +18,7 @@ function BotBrain2() {
         if (this.roundCount % 4 == 0) {
             command.turn = Command.TURNRIGHT;
         } else {
-            command.move = Command.MOVEFRONT;
+            command.move = Command.MOVEFRONT2;
         }
 
         this.roundCount++;
