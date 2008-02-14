@@ -78,11 +78,12 @@ function Robots(arena) {
     }
 
     this.robotWithMostPoints = function() {
-        this.allBots.sort(function(a,b) {return b.points - <.points});
+        this.allBots.sort(function(a,b) {return b.points - a.points});
 
         return this.allBots[0];
     }
 
+   
     this.verifyCommand = function(command) {
         //TODO
         return 1;
