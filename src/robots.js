@@ -3,6 +3,7 @@ var console;
 
 function Robots(arena) {
     this.bots = [];
+    this.allBots = [];
     this.arena = arena;
     this.boardElements = new Array();
     this.turn = 0;
@@ -56,6 +57,7 @@ function Robots(arena) {
 
     this.addBot = function(bot) {
         this.bots.push(bot);
+        this.allBots.push(bot);
         this.arena.newBot(bot);
 
         this.boardElements[bot.y][bot.x] = bot;
@@ -73,6 +75,12 @@ function Robots(arena) {
         this.bots.sort(function(a, b) {
             return a.pri - b.pri
         });
+    }
+
+    this.robotWithMostPoints = function() {
+        this.allBots.sort(function(a,b) {return b.points - <.points});
+
+        return this.allBots[0];
     }
 
     this.verifyCommand = function(command) {
@@ -286,6 +294,8 @@ function Robots(arena) {
 
         if (possibleTarget) {
             possibleTarget.health--;
+            possibleTarget.points--;
+            shootingBot.points++;
             this.arena.explode(possibleTarget);
 
             try {
@@ -306,6 +316,8 @@ function Robots(arena) {
             }
 
             this.arena.updateHealth(possibleTarget);
+            this.arena.updatePoints(possibleTarget);
+            this.arena.updatePoints(shootingBot);
 
             if (possibleTarget.health == 0) {
                 this.arena.die(possibleTarget);

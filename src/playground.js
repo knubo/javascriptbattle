@@ -117,6 +117,9 @@ function Arena(width, height) {
     this.updateHealth = function(bot) {
         $('health' + bot.botBrain.name).innerHTML = bot.health;
     }
+    this.updatePoints = function(bot) {
+        $('points' + bot.botBrain.name).innerHTML = bot.points;        
+    }
 
     this.updatePlayerInfo = function(bots) {
 
@@ -126,7 +129,7 @@ function Arena(width, height) {
             res += "<tr id='row" + bots[i].botBrain.name + "'><td><img src='" + bots[i].botBrain.picUrl +
                    "' id='img" + bots[i].botBrain.name + "' class='robotImg' ></td><td>";
             res += bots[i].botBrain.name + '</td><td id="health' + bots[i].botBrain.name + '">';
-            res += bots[i].health + '</td></tr>';
+            res += bots[i].health + '</td><td id="points'+bots[i].botBrain.name+'">'+bots[i].points+'</tr>';
         }
 
         $('playerlist').innerHTML = res;
@@ -142,7 +145,7 @@ function runLoop() {
 
     if (robots.bots.length == 1) {
         stopLoop();
-        arena.winner(robots.bots[0]);
+        arena.winner(robots.robotWithMostPoints());
         return;
     }
 
