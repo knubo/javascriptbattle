@@ -10,4 +10,5 @@ function Bot(botBrain, y, x, direction) {
     this.y = y;
     this.dir = direction;
     this.health = 3;
+    this.points = 0;
 }
