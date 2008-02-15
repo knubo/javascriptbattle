@@ -45,7 +45,7 @@ function Robots(arena) {
         do {
             posy = Math.floor(Math.random() * this.arena.height);
             posx = Math.floor(Math.random() * this.arena.width);
-        } while (this.checkForCrash(posy, posx));       
+        } while (this.checkForCrash(posy, posx));
 
         this.boardElements[bot.y][bot.x] = null;
         bot.y = posy;
@@ -78,12 +78,14 @@ function Robots(arena) {
     }
 
     this.robotsWithMostPoints = function() {
-        this.allBots.sort(function(a,b) {return b.points - a.points});
+        this.allBots.sort(function(a, b) {
+            return b.points - a.points
+        });
 
         var winners = [];
 
-        for(i in this.allBots) {
-            if(this.allBots[i].points == this.allBots[0].points) {
+        for (i in this.allBots) {
+            if (this.allBots[i].points == this.allBots[0].points) {
                 winners.push(this.allBots[i]);
             } else {
                 return winners;
@@ -94,10 +96,35 @@ function Robots(arena) {
         return winners;
     }
 
-   
+
     this.verifyCommand = function(command) {
-        //TODO
-        return 1;
+        var actionCount = 0;
+
+        if (command.move || command.turn) {
+            actionCount++;
+
+            if (command.move && (command.move < Command.MOVEFRONT || command.move > Command.MOVEFRONT2)) {
+                console.log("Illegal move command:" + command.move);
+                return false;
+            }
+            if (command.turn && (command.turn != Command.TURNLEFT && command.turn != Command.TURNRIGHT)) {
+                console.log("Illegal turn command:" + command.turn);
+                return false;
+            }
+        }
+        if(command.shoot) {
+            actionCount++;
+        }
+
+        if(command.look) {
+            actionCount++;
+        }
+
+        if(actionCount > 1) {
+            console.log("Too many commands:"+actionCount);
+        }
+        
+        return true;
     }
 
     this.gameLoop = function() {
