@@ -94,8 +94,12 @@ function Arena(width, height) {
         $("img" + bot.botBrain.name).src = "images/skull.png";
     }
 
-    this.winner = function(bot) {
-        alert(bot.botBrain.name + " wins!");
+    this.winner = function(bots) {
+        if (bots.length == 1) {
+            alert(bots[0].botBrain.name + " wins!");
+        } else {
+            alert("We have a draw!");
+        }
     }
 
     this.laser = function(bot, length) {
@@ -118,7 +122,11 @@ function Arena(width, height) {
         $('health' + bot.botBrain.name).innerHTML = bot.health;
     }
     this.updatePoints = function(bot) {
-        $('points' + bot.botBrain.name).innerHTML = bot.points;        
+        $('points' + bot.botBrain.name).innerHTML = bot.points;
+    }
+
+    this.countDownRounds = function() {
+        $('rounds').setValue($('rounds').getValue() - 1);
     }
 
     this.updatePlayerInfo = function(bots) {
@@ -129,7 +137,7 @@ function Arena(width, height) {
             res += "<tr id='row" + bots[i].botBrain.name + "'><td><img src='" + bots[i].botBrain.picUrl +
                    "' id='img" + bots[i].botBrain.name + "' class='robotImg' ></td><td>";
             res += bots[i].botBrain.name + '</td><td id="health' + bots[i].botBrain.name + '">';
-            res += bots[i].health + '</td><td id="points'+bots[i].botBrain.name+'">'+bots[i].points+'</tr>';
+            res += bots[i].health + '</td><td id="points' + bots[i].botBrain.name + '">' + bots[i].points + '</tr>';
         }
 
         $('playerlist').innerHTML = res;
@@ -138,14 +146,15 @@ function Arena(width, height) {
 
 function runLoop() {
     robots.gameLoop();
+    arena.countDownRounds();
 
     if (timerID) {
         clearTimeout(timerID);
     }
 
-    if (robots.bots.length == 1) {
+    if (robots.bots.length == 1 || $('rounds').getValue() <= 0) {
         stopLoop();
-        arena.winner(robots.robotWithMostPoints());
+        arena.winner(robots.robotsWithMostPoints());
         return;
     }
 
@@ -174,6 +183,7 @@ function init() {
     robots.addBotRandomLocation(new RandomBotBrain("Random 7"));
 
     arena.updatePlayerInfo(robots.bots);
+    $('rounds').setValue(200);
 }
 
 function setupBattle() {

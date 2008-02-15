@@ -45,7 +45,7 @@ function Robots(arena) {
         do {
             posy = Math.floor(Math.random() * this.arena.height);
             posx = Math.floor(Math.random() * this.arena.width);
-        } while (this.checkForCrash(posy, posx));
+        } while (this.checkForCrash(posy, posx));       
 
         this.boardElements[bot.y][bot.x] = null;
         bot.y = posy;
@@ -77,10 +77,21 @@ function Robots(arena) {
         });
     }
 
-    this.robotWithMostPoints = function() {
+    this.robotsWithMostPoints = function() {
         this.allBots.sort(function(a,b) {return b.points - a.points});
 
-        return this.allBots[0];
+        var winners = [];
+
+        for(i in this.allBots) {
+            if(this.allBots[i].points == this.allBots[0].points) {
+                winners.push(this.allBots[i]);
+            } else {
+                return winners;
+            }
+        }
+
+
+        return winners;
     }
 
    
