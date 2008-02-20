@@ -2,11 +2,18 @@
 var console;
 
 function Robots(arena) {
+    /* The live bots */
     this.bots = [];
+    /* All added bots */
     this.allBots = [];
+
     this.arena = arena;
+    /* board elements indexed y then x */
     this.boardElements = new Array();
+    /* The round the game is in */
     this.turn = 0;
+
+    /* Counter used for giving bots uniqe id */
     this.botId = 1;
 
     for (var y = 0; y < arena.height; y++) {
@@ -61,7 +68,7 @@ function Robots(arena) {
         this.allBots.push(bot);
         this.arena.newBot(bot);
 
-        bot.id = tbis.botId++;
+        bot.id = this.botId++;
 
         this.boardElements[bot.y][bot.x] = bot;
     }
