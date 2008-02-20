@@ -107,7 +107,7 @@ function Robots(arena) {
     }
 
 
-    this.verifyCommand = function(command) {
+    this.validateCommand = function(command) {
         var actionCount = 0;
 
         if (command.move || command.turn) {
@@ -146,7 +146,7 @@ function Robots(arena) {
                 var command = currentBot.botBrain.decide(this.clone(currentBot));
 
                 command = Object.clone(command);
-                if (this.verifyCommand(command)) {
+                if (this.validateCommand(command)) {
                     this.performCommand(currentBot, command);
                 }
             } catch(e) {
