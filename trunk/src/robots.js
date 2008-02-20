@@ -7,6 +7,7 @@ function Robots(arena) {
     this.arena = arena;
     this.boardElements = new Array();
     this.turn = 0;
+    this.botId = 1;
 
     for (var y = 0; y < arena.height; y++) {
         this.boardElements[y] = new Array(Math.floor(arena.width));
@@ -59,6 +60,8 @@ function Robots(arena) {
         this.bots.push(bot);
         this.allBots.push(bot);
         this.arena.newBot(bot);
+
+        bot.id = tbis.botId++;
 
         this.boardElements[bot.y][bot.x] = bot;
     }
