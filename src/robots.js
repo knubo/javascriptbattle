@@ -132,6 +132,7 @@ function Robots(arena) {
 
         if(actionCount > 1) {
             console.log("Too many commands:"+actionCount);
+            return false;
         }
         
         return true;
