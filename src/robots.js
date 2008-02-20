@@ -122,19 +122,19 @@ function Robots(arena) {
                 return false;
             }
         }
-        if(command.shoot) {
+        if (command.shoot) {
             actionCount++;
         }
 
-        if(command.look) {
+        if (command.look) {
             actionCount++;
         }
 
-        if(actionCount > 1) {
-            console.log("Too many commands:"+actionCount);
+        if (actionCount > 1) {
+            console.log("Too many commands:" + actionCount);
             return false;
         }
-        
+
         return true;
     }
 
