@@ -2,7 +2,7 @@ function RandomBotBrain(name) {
     this.name = name;
     this.picUrl = 'images/questionMark.jpg';
 
-    //Should return a Command object.
+    /* Should return a Command object. */
     this.decide = function(bot) {
 
         var command = new Command();
@@ -27,20 +27,25 @@ function RandomBotBrain(name) {
         return command;
     }
 
+    /* Called when this bot is hit. */
     this.hurt = function(shootingBot) {
 
     }
 
+    /* Called when this bot hits another bot. */
     this.hit = function(hurtBot) {
 	}
 
+    /* Called when decided to look. Gets info about all bots alive. */
     this.radar = function(bots) {
     }
 
+    /* Movement was blocked. */
     this.blocked = function() {
 
     }
 
+    /* Called initially so the botbrain can remember board size. */
     this.boardInfo = function(height, width) {
 
     }
