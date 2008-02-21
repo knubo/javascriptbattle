@@ -24,7 +24,7 @@ function Robots(arena) {
 
         this.boardElements[bot.y][bot.x] = null;
         var i;
-        for (i in this.bots) {
+        for (i = 0; i < this.bots.length; i++) {
             if (this.bots[i] === bot) {
                 this.bots.splice(i, 1);
                 return;
@@ -41,7 +41,7 @@ function Robots(arena) {
             posx = Math.floor(Math.random() * this.arena.width);
         } while (this.checkForCrash(posy, posx));
 
-        botbrain.boardInfo()
+        botbrain.boardInfo(this.arena.height, this.arena.width);
 
         this.addBot(new Bot(botbrain, posy, posx, Math.floor(Math.random(4)) + 1));
     }
@@ -79,7 +79,7 @@ function Robots(arena) {
 
     this.makeOrder = function() {
         var i;
-        for (i in this.bots) {
+        for (i = 0; i < this.bots.length; i++) {
             this.bots[i].pri = Math.random();
         }
         this.bots.sort(function(a, b) {
@@ -94,7 +94,8 @@ function Robots(arena) {
 
         var winners = [];
 
-        for (i in this.allBots) {
+        var i;
+        for (i = 0; i < this.allBots.length; i++) {
             if (this.allBots[i].points == this.allBots[0].points) {
                 winners.push(this.allBots[i]);
             } else {
@@ -183,7 +184,7 @@ function Robots(arena) {
             startx = this.arena.width - 6;
         }
 
-        var itemFound = new Array();
+        var itemFound = [];
 
         var lookX;
         var lookY;
@@ -223,6 +224,20 @@ function Robots(arena) {
     }
 
     this.performCommand = function(currentBot, command) {
+
+        if (command.turn) {
+            currentBot.dir += command.turn;
+
+            if (currentBot.dir < 1) {
+                currentBot.dir = 4;
+            }
+            if (currentBot.dir > 4) {
+                currentBot.dir = 1;
+            }
+
+            this.arena.turnRobot(currentBot);
+        }
+
         if (command.move) {
             do {
                 var newY = this.nextY(currentBot);
@@ -251,23 +266,17 @@ function Robots(arena) {
 
             this.arena.moveRobot(currentBot);
 
-        } else if (command.turn) {
-            currentBot.dir += command.turn;
+        }
 
-            if (currentBot.dir < 1) {
-                currentBot.dir = 4;
-            }
-            if (currentBot.dir > 4) {
-                currentBot.dir = 1;
-            }
-
-            this.arena.turnRobot(currentBot);
-        } else if (command.look) {
-            var clonedList = new Array(this.bots.length);
+        if (command.look) {
+            var clonedList = [];
 
             var i;
-            for (i in this.bots) {
-                clonedList.push(this.clone(robots[i]));
+            for (i = 0; i < this.bots.length; i++) {
+                /* Skip the bot itself to make it easier to handle inside */
+                if (this.bots[i].id != currentBot.id) {
+                    clonedList.push(this.clone(this.bots[i]));
+                }
             }
 
             try {
@@ -278,16 +287,22 @@ function Robots(arena) {
                 console.dir(currentBot.botBrain);
             }
             this.arena.radar(currentBot);
-        } else if (command.shoot) {
+        }
+
+        if (command.shoot) {
             var length = this.robotShoots(currentBot);
             this.arena.laser(currentBot, length);
         }
     }
 
     this.clone = function(bot) {
-        var c = Object.clone(bot);
-        c.botBrain = null;
-
+        var c = {};
+        c.x = bot.x;
+        c.y = bot.y
+        c.id = bot.id;
+        c.dir = bot.dir;
+        c.health = bot.health;
+        c.points = bot.points;
         return c;
     }
 
