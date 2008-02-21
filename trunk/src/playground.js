@@ -181,6 +181,7 @@ function init() {
     robots.addBotRandomLocation(new RandomBotBrain("Random 5"));
     robots.addBotRandomLocation(new RandomBotBrain("Random 6"));
     robots.addBotRandomLocation(new RandomBotBrain("Random 7"));
+//    robots.addBotRandomLocation(new KEBBrain());
 
     arena.updatePlayerInfo(robots.bots);
     $('rounds').setValue(200);
