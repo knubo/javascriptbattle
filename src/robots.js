@@ -295,6 +295,16 @@ function Robots(arena) {
         }
     }
 
+    this.setBotLocation = function(bot, info) {
+        this.boardElements[bot.y][bot.x] = null;
+        bot.x = info.x;
+        bot.y = info.y;
+        bot.dir = info.dir;
+        this.boardElements[bot.y][bot.x] = bot;
+        arena.moveRobot(bot, true);
+        arena.turnRobot(bot);
+    }
+
     this.clone = function(bot) {
         var c = {};
         c.x = bot.x;
@@ -404,7 +414,7 @@ function Robots(arena) {
 
         /* 4 could be replaced with max length of beam */
         var i;
-        for (i = 0; i < 4; i++) {
+        for (i = 0; i < 3; i++) {
             beam.y = this.nextY(beam);
             beam.x = this.nextX(beam);
             if (this.hurtRobotAt(currentBot, beam.y, beam.x)) {

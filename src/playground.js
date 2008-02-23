@@ -17,12 +17,19 @@ function Arena(width, height) {
         theBot.starImg.addClassName("dir" + theBot.dir);
     }
 
-    this.moveRobot = function(theBot) {
+    this.moveRobot = function(theBot, instant) {
         var cellToMoveTo = $('y' + theBot.y + 'x' + theBot.x);
 
         var cellPosition = cellToMoveTo.viewportOffset();
 
-        new Effect.Move(theBot.img, {y:cellPosition.top, x:cellPosition.left , mode: 'absolute'});
+        if (instant) {
+            theBot.img.setStyle({
+                top: cellPosition.top,
+                left: cellPosition.left
+            });
+        } else {
+            new Effect.Move(theBot.img, {y:cellPosition.top, x:cellPosition.left , mode: 'absolute'});
+        }
     }
 
     this.drawArena = function (target) {
@@ -184,7 +191,7 @@ function init(addBots) {
         robots.addBotRandomLocation(new RandomBotBrain("Random 6"));
         robots.addBotRandomLocation(new RandomBotBrain("Random 7"));
 //        robots.addBotRandomLocation(new KEBBrain());
-//        robots.addBotRandomLocation(new RunBotBrain());
+        //        robots.addBotRandomLocation(new RunBotBrain());
 
         arena.updatePlayerInfo(robots.bots);
         $('rounds').setValue(200);
