@@ -36,9 +36,27 @@ function testLaserRangeWest() {
 
 }
 
+function testLaserRangeEast() {
+
+    botB.health = 3;
+    robots.setBotLocation(botA, {x:1, y:0, dir:2});
+    robots.setBotLocation(botB, {x:4, y:0, dir:1});
+    queBrainA.addCommand(shootCommand);
+
+    robots.gameLoop();
+    assertEquals("Failed to hurt bot", botB.health, 2);
+
+    robots.setBotLocation(botB, {x:5, y:0, dir:4});
+
+    queBrainA.addCommand(shootCommand);
+    robots.gameLoop();
+    assertEquals("Shouldn't have hurt bot", botB.health, 2);
+
+}
+
+
 function testLaserRangeNorth() {
-
-
+    
     robots.setBotLocation(botA, {x:1, y:4, dir:1});
     robots.setBotLocation(botB, {x:1, y:1, dir:1});
     botB.health = 3;
@@ -54,3 +72,19 @@ function testLaserRangeNorth() {
     assertEquals("Shouldn't have hurt bot", botB.health, 2);
 }
 
+function testLaserRangeSouth() {
+
+    robots.setBotLocation(botA, {x:1, y:1, dir:3});
+    robots.setBotLocation(botB, {x:1, y:4, dir:1});
+    botB.health = 3;
+    queBrainA.addCommand(shootCommand);
+
+    robots.gameLoop();
+    assertEquals("Failed to hurt bot", botB.health, 2);
+
+    robots.setBotLocation(botB, {x:1, y:5, dir:1});
+
+    queBrainA.addCommand(shootCommand);
+    robots.gameLoop();
+    assertEquals("Shouldn't have hurt bot", botB.health, 2);
+}
