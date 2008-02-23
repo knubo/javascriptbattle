@@ -6,16 +6,15 @@ This projects aims to build a sort of "last man standing" robo rally, where play
 *Version 1.0:*
  * Commands
    * Movements
-     * forward, 
-     * left
+     * forward, one or two spaces 
+     * left (turns before move)
      * right
-   * Eliminate player (straight forward).
+   * Eliminate player (shoot) (straight forward, 3 spaces).
    * Look
  * Playground is plain simple without anything. Configurable size.
  * Robots will get feedback if they hit players with laser and if they are blocked from moving.
 
-User can paste code for his/her bot into web page on central web page.
-
+New bots must be added to script explicitly.
 
 
 *Version 2.0:*
