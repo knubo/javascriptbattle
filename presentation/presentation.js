@@ -52,7 +52,7 @@ function viewSlide(slideNumber) {
 }
 
 function loadSlide() {
-    new Ajax.Updater('presentationInner', "slides/slide" + currentSlide + ".html", {evalScripts:true});
+    new Ajax.Updater('presentationInner', "slides/slide" + currentSlide + ".html", {evalScripts:true,method:'get'});
     $('pageNumber').innerHTML = currentSlide;
 }
 
