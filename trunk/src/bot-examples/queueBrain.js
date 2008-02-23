@@ -8,6 +8,10 @@ function QueueBrain(name) {
     this.decide = function(bot) {
         this.myself = bot;
 
+        if(this.commandQueue.length == 0) {
+            return {};
+        }
+
         return this.commandQueue.shift();
     }
 

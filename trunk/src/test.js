@@ -27,6 +27,12 @@ function fail(message) {
     throw("Fail:" + message);
 }
 
+function assertEquals(reason, a, b) {
+    if(a != b) {
+        throw ("AssertEquals failed:"+reason);        
+    }
+}
+
 function assertTrue(condition) {
     if (!condition) {
         throw ("AssertTrue failed");
