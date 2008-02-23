@@ -1,6 +1,6 @@
-function RunBotBrain(name) {
+function QueueBrain(name) {
     this.name = name;
-    this.picUrl = 'http://www.knubo.no/bilder/runner.gif';
+    this.picUrl = 'http://www.knubo.no/bilder/testRobot.jpg';
 
     this.commandQueue = [];
 
