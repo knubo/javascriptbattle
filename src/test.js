@@ -5,7 +5,7 @@ function startTests() {
     for (i in window) {
         if (i.startsWith("test")) {
             try {
-                eval(i + "();");
+                eval(i + "()");
                 reportStatus(true, i);
             } catch(e) {
                 reportStatus(false, i, e);
