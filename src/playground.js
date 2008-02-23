@@ -167,28 +167,32 @@ function stopLoop() {
     }
 }
 
-function init() {
+function init(addBots) {
     arena = new Arena($('playgroundHeight').getValue(), $('playgroundWidth').getValue());
     robots = new Robots(arena);
     arena.drawArena($('playground'));
 
-    robots.addBotRandomLocation(new BotBrain1());
-    robots.addBotRandomLocation(new BotBrain2());
-    robots.addBotRandomLocation(new RandomBotBrain("Random 1"));
-    robots.addBotRandomLocation(new RandomBotBrain("Random 2"));
-    robots.addBotRandomLocation(new RandomBotBrain("Random 3"));
-    robots.addBotRandomLocation(new RandomBotBrain("Random 4"));
-    robots.addBotRandomLocation(new RandomBotBrain("Random 5"));
-    robots.addBotRandomLocation(new RandomBotBrain("Random 6"));
-    robots.addBotRandomLocation(new RandomBotBrain("Random 7"));
-//    robots.addBotRandomLocation(new KEBBrain());
 
-    arena.updatePlayerInfo(robots.bots);
-    $('rounds').setValue(200);
+    if (addBots) {
+        robots.addBotRandomLocation(new BotBrain1());
+        robots.addBotRandomLocation(new BotBrain2());
+        robots.addBotRandomLocation(new RandomBotBrain("Random 1"));
+        robots.addBotRandomLocation(new RandomBotBrain("Random 2"));
+        robots.addBotRandomLocation(new RandomBotBrain("Random 3"));
+        robots.addBotRandomLocation(new RandomBotBrain("Random 4"));
+        robots.addBotRandomLocation(new RandomBotBrain("Random 5"));
+        robots.addBotRandomLocation(new RandomBotBrain("Random 6"));
+        robots.addBotRandomLocation(new RandomBotBrain("Random 7"));
+//        robots.addBotRandomLocation(new KEBBrain());
+//        robots.addBotRandomLocation(new RunBotBrain());
+
+        arena.updatePlayerInfo(robots.bots);
+        $('rounds').setValue(200);
+    }
 }
 
 function setupBattle() {
-    init();
+    init(true);
 
     $('startButton').observe('click', function() {
         runLoop();
