@@ -1,17 +1,15 @@
-
-
 .arena {
     border-collapse: collapse;
     border: 1px solid black;
 }
 
 .laser {
-    position:absolute;
-    display:none;
-    z-index:10;
-    color:red;
-    
-    background-color:red;
+    position: absolute;
+    display: none;
+    z-index: 10;
+    color: red;
+
+    background-color: red;
 }
 
 .boom {
@@ -19,8 +17,8 @@
     display: none;
     width: 32px;
     height: 29px;
-    z-index:200;
-    top:0;
+    z-index: 200;
+    top: 0;
 }
 
 .radar {
@@ -28,8 +26,8 @@
     display: none;
     width: 32px;
     height: 29px;
-    z-index:100;
-    top:0;
+    z-index: 100;
+    top: 0;
 }
 
 .robot {
@@ -77,28 +75,57 @@
 }
 
 #playground {
-    float:left;
+    float: left;
 }
 
 #players {
-    float:left;   
+    float: left;
 }
 
 #control {
-    float:left;
+    float: left;
 }
+
 /* The player info stuff */
 
 .controlContent {
-    margin-left:20px;
+    margin-left: 20px;
 }
+
 .playertable .controltable {
     margin-left: 20px;
     border-collapse: collapse;
 }
 
-.playertable thead th, .controltable thead th{ border-bottom:2px solid darkslategray;text-align:center;}
-.playertable tbody td { border: 1px solid cadetblue; padding-left:5px;padding-right:5px;}
-.controltable tbody td { padding-left:5px;padding-right:5px;}
-.controltable tbody th {text-align:left;}
-.button { width:120px;}
+.playertable thead th, .controltable thead th {
+    border-bottom: 2px solid darkslategray;
+    text-align: center;
+}
+
+.playertable tbody td {
+    border: 1px solid cadetblue;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.controltable tbody td {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.controltable tbody th {
+    text-align: left;
+}
+
+.button {
+    width: 120px;
+}
+
+/* Some test stuff */
+.ok_test {
+    color:green;
+}
+
+.failed_test {
+    color:red;
+}
