@@ -10,6 +10,6 @@ create table jsb_user(
 create table jsb_brains(
   owner varchar(25),
   name varchar(20) primary key,
-  created date,
+  created timestamp,
   bot text
 );
