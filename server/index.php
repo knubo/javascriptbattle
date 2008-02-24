@@ -11,8 +11,11 @@ $user = $regnSession->auth();
 <html>
 <head>
     <script src="server.js" type="text/javascript"></script>
+    <script src="js/prototype.js" type="text/javascript"></script>
+    <script src="js/scriptaculous.js" type="text/javascript"></script>
+
 </head>
-<body>
+<body onload="setup();">
 
 <h1 id="headquarter"><span id="headqurterspan">JavaScript Battle Headquarter</span></h1>
 <div id="loginbox">
@@ -20,8 +23,8 @@ $user = $regnSession->auth();
 	User: <input id="user"> Password: <input id="password"><input type="button" value="Log in" id="loginbutton">
 	</div>
 	<div id="logout" <?= $user ? "" : "style='display:none;'" ?>>
-	<?= $user ?>
-	<input type="button" value="Log out">
+	<span id="loggedinuser"><?= $user ?></span>
+	<input type="button" value="Log out" id="logoutbutton">
 	</div>
 </div>
 
