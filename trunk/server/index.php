@@ -20,7 +20,7 @@ $user = $regnSession->auth();
 <h1 id="headquarter"><span id="headqurterspan">JavaScript Battle Headquarter</span></h1>
 <div id="loginbox">
 	<div class="loginControlled" <?= $user ? "style='display:none;'''": "" ?>>
-	User: <input id="user"> Password: <input id="password"><input type="button" value="Log in" id="loginbutton">
+	User: <input id="user"> Password: <input id="password" type="password"><input type="button" value="Log in" id="loginbutton">
 	</div>
 	<div class="loginControlled" <?= $user ? "" : "style='display:none;'" ?>>
 	<span id="loggedinuser"><?= $user ?></span>
