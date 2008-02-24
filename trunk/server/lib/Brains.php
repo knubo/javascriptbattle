@@ -12,6 +12,14 @@ class Brains {
 		
 		return $prep->execute();
 	}
+
+	function getOne($name) {
+	    $prep = $this->db->prepare("select bot from ".AppConfig :: DB_PREFIX ."brains where name=?");
+	    $prep->bind_params("s", $name);
+	    $res = $prep->execute();
+	    $one = array_shift($res);
+	    return $one['bot'];
+    }	
 }
 
 ?>
