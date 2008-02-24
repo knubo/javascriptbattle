@@ -1,3 +1,7 @@
+function doUpload() {
+  $('uploadform').request();  
+}
+
 function login() {
     var user = $('user').getValue();
     var params = 'action=login&user=' + user + "&password=" + $('password').getValue();
@@ -5,8 +9,7 @@ function login() {
         onSuccess: function(transport) {
             if(transport.responseText.match('ok')) {
                 $('loggedinuser').innerHTML = user;
-                $('logout').toggle();
-                $('login').toggle();
+                $$('div.loginControlled').invoke("toggle");
             } else {
             	new Effect.Shake('loginbutton');
             }
@@ -19,8 +22,7 @@ function logout() {
         onSuccess: function(transport) {
             if(transport.responseText.match('1')) {
                 $('loggedinuser').innerHTML = "";
-                $('logout').toggle();
-                $('login').toggle();
+                $$('div.loginControlled').invoke("toggle");
             } else {
             	new Effect.Shake('logoutbutton');
             }
@@ -37,4 +39,10 @@ function setup() {
     $('logoutbutton').observe('click', function() {
         logout();
     });
+
+    $('uploadButton').observe('click', function() {
+        doUpload();
+    });
+
+
 }
