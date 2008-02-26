@@ -94,8 +94,12 @@ function Arena(width, height) {
         new Effect.Fade(radar);
     }
 
+    this.hideBot = function(bot) {
+        bot.img.setStyle("display:none;");
+    }
+
     this.die = function(bot) {
-        bot.img.setStyle("display:none");
+        this.hideBot(bot);
 //        $("row"+bot.botBrain.name).setStyle("text-decoration: line-through;");
         $("img" + bot.botBrain.name).src = "images/skull.png";
     }
@@ -179,17 +183,21 @@ function init(addBots) {
     arena.drawArena($('playground'));
 
     if (addBots) {
-        robots.addBotRandomLocation(new BotBrain1());
+//        robots.addBotRandomLocation(new BotBrain1());
         robots.addBotRandomLocation(new BotBrain2());
-        robots.addBotRandomLocation(new RandomBotBrain("Random 1"));
-        robots.addBotRandomLocation(new RandomBotBrain("Random 2"));
-        robots.addBotRandomLocation(new RandomBotBrain("Random 3"));
-        robots.addBotRandomLocation(new RandomBotBrain("Random 4"));
-        robots.addBotRandomLocation(new RandomBotBrain("Random 5"));
-        robots.addBotRandomLocation(new RandomBotBrain("Random 6"));
-        robots.addBotRandomLocation(new RandomBotBrain("Random 7"));
-//        robots.addBotRandomLocation(new KEBBrain());
-        //        robots.addBotRandomLocation(new RunBotBrain());
+//        robots.addBotRandomLocation(new RandomBotBrain("Random 1"));
+//        robots.addBotRandomLocation(new RandomBotBrain("Random 2"));
+//        robots.addBotRandomLocation(new RandomBotBrain("Random 3"));
+//        robots.addBotRandomLocation(new RandomBotBrain("Random 4"));
+        robots.addBotRandomLocation(new KrsOha());
+        robots.addBotRandomLocation(new KSTBrain());
+        robots.addBotRandomLocation(new GfeBotBrain());
+        robots.addBotRandomLocation(new BotJens());
+//        robots.addBotRandomLocation(new RandomBotBrain("Random 5"));
+//        robots.addBotRandomLocation(new RandomBotBrain("Random 6"));
+//        robots.addBotRandomLocation(new RandomBotBrain("Random 7"));
+        robots.addBotRandomLocation(new KEBBrain());
+        robots.addBotRandomLocation(new RunBotBrain());
 
         arena.updatePlayerInfo(robots.bots);
         $('rounds').setValue(200);
@@ -209,7 +217,7 @@ function setupBattle() {
 
     $('restartButton').observe('click', function() {
         stopLoop();
-        init();
+        init(true);
     });
 
     $('pickButton').observe('click', function() {

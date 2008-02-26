@@ -23,10 +23,12 @@ function Robots(arena) {
     
     this.removeAllBots = function() {
         for(i = 0; i < this.bots.length; i++) {
-            this.removeBot(this.bots[i]);
+            this.arena.hideBot(this.bots[i]);
+            this.boardElements[this.bots[i].y][this.bots[i].x] = null;
         }
 
         this.allBots = [];
+        this.bots = [];
     }
 
     this.removeBot = function(bot) {
