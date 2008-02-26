@@ -19,5 +19,6 @@ switch ($action) {
 		echo json_encode($brains->listAll());
 		break;
 }
+
 ?>
   

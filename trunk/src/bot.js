@@ -11,4 +11,5 @@ function Bot(botBrain, y, x, direction) {
     this.dir = direction;
     this.health = 3;
     this.points = 0;
+    this.id = 0; // Set by the runtime.
 }
