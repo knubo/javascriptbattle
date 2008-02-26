@@ -6,6 +6,8 @@ include_once ("../lib/Brains.php");
 $name = array_key_exists("name", $_REQUEST) ? $_REQUEST["name"] : "";
 $action = array_key_exists("action", $_REQUEST) ? $_REQUEST["action"] : "list";
 
+header("Content-Type: application/json");
+
 $db = new DB();
 $brains = new Brains($db);
 

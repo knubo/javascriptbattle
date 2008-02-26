@@ -8,7 +8,7 @@ class Brains {
 	}
 	
 	function listAll() {
-		$prep = $this->db->prepare("select created, name, owner from ".AppConfig :: DB_PREFIX ."brains");
+		$prep = $this->db->prepare("select created, name, owner, func from ".AppConfig :: DB_PREFIX ."brains");
 		
 		return $prep->execute();
 	}
