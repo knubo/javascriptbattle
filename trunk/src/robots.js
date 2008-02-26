@@ -20,6 +20,15 @@ function Robots(arena) {
         this.boardElements[y] = new Array(Math.floor(arena.width));
     }
 
+    
+    this.removeAllBots = function() {
+        for(i = 0; i < this.bots.length; i++) {
+            this.removeBot(this.bots[i]);
+        }
+
+        this.allBots = [];
+    }
+
     this.removeBot = function(bot) {
 
         this.boardElements[bot.y][bot.x] = null;

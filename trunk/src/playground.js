@@ -2,7 +2,6 @@ var timerID;
 var arena;
 var robots;
 
-
 function Arena(width, height) {
     this.width = width;
     this.height = height;
@@ -179,7 +178,6 @@ function init(addBots) {
     robots = new Robots(arena);
     arena.drawArena($('playground'));
 
-
     if (addBots) {
         robots.addBotRandomLocation(new BotBrain1());
         robots.addBotRandomLocation(new BotBrain2());
@@ -214,6 +212,13 @@ function setupBattle() {
         init();
     });
 
+    $('pickButton').observe('click', function() {
+        pickRobots();
+    });
+
+    $('useSelected').observe('click', function() {
+        useSelectedRobots();
+    })
 }    
 
 
