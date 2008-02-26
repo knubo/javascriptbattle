@@ -42,13 +42,14 @@ $brains = new Brains($db);
 <table>
 <thead>
 <tr>
-<th>Brain name</th><th>Creator</th><th>Last update</th>
+<th>Brain name</th><th>Creator</th><th>Last update</th><th>Brain function</th>
 </tr>
 </thead>
 <tbody>
 <?php
   foreach($brains->listAll() as $one) {
-  	 echo "<tr><td>".$one["name"]."</td><td>".$one["owner"]."</td><td>".$one["created"]."</td></tr>";
+  	 echo "<tr><td>".$one["name"]."</td><td>".$one["owner"]."</td><td>".
+  	      $one["created"]."</td><td>".$one["func"]."</td></tr>";
   }
 ?>
 </tbody>

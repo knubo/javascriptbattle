@@ -20,10 +20,14 @@ $brainname = array_key_exists("brainname", $_REQUEST) ? $_REQUEST["brainname"] :
 
 $bot = file_get_contents($_FILES['brainfile']['tmp_name']);
 
+preg_match("/.*function (.*)\(\)/",$bot, $func);
+
 //TODO Validate that it looks like a javascript function we expect.
 
-$prep = $db->prepare("insert into ".AppConfig :: DB_PREFIX ."brains (bot,created,name,owner) values (?,now(),?,?) on duplicate key update bot=?,created=now()");
-$prep->bind_params("ssss", $bot, $brainname, $user, $bot);
+$prep = $db->prepare("insert into ".AppConfig :: DB_PREFIX ."brains (bot,created,name,owner, func) values (?,now(),?,?,?) on duplicate key update bot=?,created=now(),func=?");
+$prep->bind_params("ssssss", $bot, $brainname, $user, $func, $bot, $func[1]);
 $prep->execute();
 
+//print_r($func);
+//die;
 header('Location: ..');?>
