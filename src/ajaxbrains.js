@@ -25,6 +25,11 @@ function pickRobots() {
     });
 }
 
+function pickAllRobots() {
+    var elems = $('brainListForm').getElements('checkbox');
+    elems.each(function(checkbox) {checkbox.checked = true;});   
+}
+
 function useSelectedRobots() {
 
     var elems = $('brainListForm').getElements('checkbox');

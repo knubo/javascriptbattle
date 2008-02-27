@@ -227,6 +227,10 @@ function setupBattle() {
     $('useSelected').observe('click', function() {
         useSelectedRobots();
     })
+
+    $('pickAll').observe('click', function() {
+        pickAllRobots();
+    })
 }    
 
 
