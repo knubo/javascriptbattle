@@ -1,6 +1,7 @@
 function RandomBotBrain(name) {
     this.name = name;
     this.picUrl = 'images/questionMark.jpg';
+    this.isRandomBrain = true;
 
     /* Should return a Command object. */
     this.decide = function(bot) {
