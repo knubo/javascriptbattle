@@ -194,14 +194,29 @@ function init(addBots) {
         robots.addBotRandomLocation(new RandomBotBrain("Random 7"));
 
         arena.updatePlayerInfo(robots.bots);
-        $('rounds').setValue(200);
     }
+    $('rounds').setValue(200);
+}
+
+function restart() {
+    var allBots = robots.allBots;
+    init(false);
+
+    for (i = 0; i < allBots.length; i++) {
+        if(allBots[i].botBrain.isRandomBrain) {
+            robots.addBotRandomLocation(new RandomBotBrain(allBots[i].botBrain.name));
+        } else {
+            robots.addBotRandomLocation(eval("new "+allBots[i].botBrain.constructor+"()"));
+        }
+    }
+
+    arena.updatePlayerInfo(robots.bots);
 }
 
 function setupBattle() {
 
     /* If run locally, skip the ajax loading part - must be on suitable server for that beeing a point */
-    if(document.location.href.startsWith('file')) {
+    if (document.location.href.startsWith('file')) {
         $('pickRobotButtonRow').toggle();
     }
 
@@ -217,7 +232,7 @@ function setupBattle() {
 
     $('restartButton').observe('click', function() {
         stopLoop();
-        init(true);
+        restart();
     });
 
     $('pickButton').observe('click', function() {
