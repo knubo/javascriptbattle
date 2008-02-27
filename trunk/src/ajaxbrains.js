@@ -27,7 +27,9 @@ function pickRobots() {
 
 function pickAllRobots() {
     var elems = $('brainListForm').getElements('checkbox');
-    elems.each(function(checkbox) {checkbox.checked = true;});   
+    elems.each(function(checkbox) {
+        checkbox.checked = true;
+    });
 }
 
 function useSelectedRobots() {
@@ -36,19 +38,14 @@ function useSelectedRobots() {
 
     robots.removeAllBots();
 
-    /* Pick checked checkboxes */
-    elems = elems.findAll(function(checkbox) {
-        return $F(checkbox);
-    });
-
-    var c = 0;
     elems.each(function(checkbox) {
-        c++;
-        loadBrain($F(checkbox), elems.length == c);
+        if ($F(checkbox)) {
+            loadBrain($F(checkbox));
+        }
     });
 }
 
-function loadBrain(brainName, isLast) {
+function loadBrain(brainName) {
     var brainInfo = availableBrains.get(brainName);
 
     new Ajax.Request("../server/ajax/bot.php?action=get&name=" + brainName, {
@@ -59,11 +56,9 @@ function loadBrain(brainName, isLast) {
 
             eval("robots.addBotRandomLocation(new " + brainInfo.func + "())");
 
-            if (isLast) {
-                $('robotpick').hide();
-                $('page_overlay').hide();
-                arena.updatePlayerInfo(robots.bots);
-            }
+            $('robotpick').hide();
+            $('page_overlay').hide();
+            arena.updatePlayerInfo(robots.bots);
 
         }
     });
