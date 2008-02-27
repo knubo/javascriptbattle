@@ -183,21 +183,15 @@ function init(addBots) {
     arena.drawArena($('playground'));
 
     if (addBots) {
-//        robots.addBotRandomLocation(new BotBrain1());
+        robots.addBotRandomLocation(new BotBrain1());
         robots.addBotRandomLocation(new BotBrain2());
-//        robots.addBotRandomLocation(new RandomBotBrain("Random 1"));
-//        robots.addBotRandomLocation(new RandomBotBrain("Random 2"));
-//        robots.addBotRandomLocation(new RandomBotBrain("Random 3"));
-//        robots.addBotRandomLocation(new RandomBotBrain("Random 4"));
-        robots.addBotRandomLocation(new KrsOha());
-        robots.addBotRandomLocation(new KSTBrain());
-        robots.addBotRandomLocation(new GfeBotBrain());
-        robots.addBotRandomLocation(new BotJens());
-//        robots.addBotRandomLocation(new RandomBotBrain("Random 5"));
-//        robots.addBotRandomLocation(new RandomBotBrain("Random 6"));
-//        robots.addBotRandomLocation(new RandomBotBrain("Random 7"));
-        robots.addBotRandomLocation(new KEBBrain());
-        robots.addBotRandomLocation(new RunBotBrain());
+        robots.addBotRandomLocation(new RandomBotBrain("Random 1"));
+        robots.addBotRandomLocation(new RandomBotBrain("Random 2"));
+        robots.addBotRandomLocation(new RandomBotBrain("Random 3"));
+        robots.addBotRandomLocation(new RandomBotBrain("Random 4"));
+        robots.addBotRandomLocation(new RandomBotBrain("Random 5"));
+        robots.addBotRandomLocation(new RandomBotBrain("Random 6"));
+        robots.addBotRandomLocation(new RandomBotBrain("Random 7"));
 
         arena.updatePlayerInfo(robots.bots);
         $('rounds').setValue(200);
@@ -205,6 +199,12 @@ function init(addBots) {
 }
 
 function setupBattle() {
+
+    /* If run locally, skip the ajax loading part - must be on suitable server for that beeing a point */
+    if(document.location.href.startsWith('file')) {
+        $('pickRobotButtonRow').toggle();
+    }
+
     init(true);
 
     $('startButton').observe('click', function() {
