@@ -69,9 +69,7 @@ foreach ($brains->listAll() as $one) {
   <div class="push"><!-- --></div>
 </div>
 
-<div class="footer">
-Graphics under Creative Commons found on <a href="http://www.flickr.com/photos/7969902@N07/511103951/in/set-72157600253743362/">flickr</a>
-</div>
+<div class="footer">Created by Knut Erik Borgen (<a href="mailto:knutbo@ifi.uio.no">knutbo@ifi.uio.no</a>)</div>
 
 </body>
 </html>
