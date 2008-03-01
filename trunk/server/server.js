@@ -1,4 +1,8 @@
 function doUpload() {
+    if($('brainname').getValue().length == 0) {
+        alert("Please provide brain name.");
+        return;
+    }
     $('uploadform').request();
 }
 
