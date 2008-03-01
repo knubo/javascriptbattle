@@ -217,7 +217,7 @@ function setupBattle() {
 
     /* If run locally, skip the ajax loading part - must be on suitable server for that beeing a point */
     if (document.location.href.startsWith('file')) {
-        $('pickRobotButtonRow').toggle();
+        $$('TR.mustBeOnServer').invoke("toggle");
     }
 
     init(true);
