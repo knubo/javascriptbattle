@@ -81,19 +81,21 @@ class User {
         return $this->db->affected_rows();    	
     }
     
+    function exist($user) {
+    	$bind = $this->db->prepare("select username from ". AppConfig :: DB_PREFIX ."user where username=?");
+    	$bind->bind_params("s", $user);
+    	$res = $bind->execute();
+    	
+    	return count($res);
+    }
+    
+    
     function save($user, $password, $person, $readonly, $reducedwrite) {
-        if(!$password) {
-            $bind = $this->db->prepare("update ". AppConfig :: DB_PREFIX ."user set person=?,readonly=?,reducedwrite=? where username=?");
-            $bind->bind_params("iiis", $person, $readonly, $reducedwrite, $user);
-            $bind->execute();
-        
-            return $this->db->affected_rows();
-        }
-        
-    	$bind = $this->db->prepare("insert into ". AppConfig :: DB_PREFIX ."user set pass=?, person=?, username=?,readonly=? ON DUPLICATE KEY UPDATE pass=?,person=?,readonly=?,reducedwrite=?");
+    	    	
+    	$bind = $this->db->prepare("insert into ". AppConfig :: DB_PREFIX ."user set pass=?, person=?, username=?,readonly=?");
         $pass = crypt($password, $this->makesalt());
         
-        $bind->bind_params("sisisiii", $pass, $person, $user, $readonly, $pass, $person, $readonly,$reducedwrite);
+        $bind->bind_params("sisi", $pass, $person, $user, $readonly);
         $bind->execute();
         
         return $this->db->affected_rows();

@@ -1,0 +1,99 @@
+html, body {
+	height: 100%;
+    background-color: #E7D8AF;
+    color: black;
+}
+
+#headquarter {
+    color: #7D775C;
+    margin-top: 50px;
+    margin-left: 100px;
+}
+
+#welcomeText {
+    margin-bottom:40px;
+}
+#welcomeText, #brainlist {
+    margin-left: 100px;
+    margin-right: 250px;
+}
+
+#brainlist table {
+    border-collapse:collapse;
+}
+#brainlist th {
+    border-bottom:2px solid;
+    padding-right:8px;
+    text-align:left;
+}
+
+#brainlist tbody td {
+    border-bottom: 1px dotted;
+    padding-right:8px;
+}
+
+
+#uploadform {
+    margin-top:20px;
+}
+
+
+#uploadBox {
+    padding: 10px;
+    position: absolute;
+    right: 10px;
+    top: 50px;
+    width:25%;
+    border: 1px solid #000;
+    color: #EE1C23;
+    background-color: #DCC79A;
+    font-size: smaller;
+}
+
+#uploadtext {
+    color: black;    
+}
+
+#loginbox {
+    padding: 5px;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    border: 1px solid #000;
+    color: #EE1C23;
+    background-color: #DCC79A;
+    font-size: smaller;
+}
+
+#user, #password, #brainname, #brainfile {
+    background-color: #DDAF7E;
+    font-size: smaller;
+    width: 8em;
+}
+
+#loginbutton, #logoutbutton, #newuserbutton, #uploadButton {
+/*    background-color: #677045;
+    color: #FDEC96; */
+    font-size: smaller;
+}
+
+#brainname, #brainfile {
+    margin-bottom:6px;
+    
+}
+
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -4em; /* the bottom margin is the negative value of the footer's height */
+}
+
+.footer {
+    margin-left:auto;
+    margin-right:auto;
+    width:50%;
+}
+.footer, .push {
+	height: 4em; /* .push must be the same height as .footer */
+}
