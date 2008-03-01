@@ -15,7 +15,6 @@ class RegnSession {
         session_start();
 
         if(!$_SESSION["username"]) {
-            header("HTTP/1.0 510 Not Authenticated");
             return 0;           
         }
         return $_SESSION["username"];
