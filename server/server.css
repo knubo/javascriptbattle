@@ -54,6 +54,17 @@ html, body {
     color: black;    
 }
 
+#navigbox {
+    padding: 5px;
+    position: absolute;
+    left: 10px;
+    top: 0;
+    border: 1px solid #000;
+    color: #EE1C23;
+    background-color: #DCC79A;
+    font-size: smaller;
+}
+
 #loginbox {
     padding: 5px;
     position: absolute;
