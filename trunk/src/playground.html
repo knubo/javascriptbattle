@@ -57,7 +57,7 @@
                     <input type="button" value="Restart battle" class="button" id="restartButton">
                 </td>
             </tr>
-            <tr id="pickRobotButtonRow">
+            <tr class="mustBeOnServer">
                 <td colspan="2">
                     <input type="button" value="Pick robots" class="button" id="pickButton">
                 </td>
@@ -81,6 +81,9 @@
                 <td>
                     <input value="200" maxlength="4" id="rounds" size="4">
                 </td>
+            </tr>
+            <tr class="mustBeOnServer">
+                <td colspan="2"><a href="../server/">To Headquarters</a></td>
             </tr>
         </tbody>
     </table>
