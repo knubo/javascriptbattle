@@ -21,11 +21,16 @@ $brains = new Brains($db);
 <body onload="setup();">
 <div class="wrapper">
 <h1 id="headquarter">JavaScript Battle Headquarter</h1>
+
+<div id="navigbox"><a href="../src/playground.html">To arena</a>
+</div>
+
+
 <div id="loginbox">
 	<div class="loginControlled" <?= $user ? "style='display:none;'''": "" ?>>
 		User: <input id="user">Password: <input id="password" type="password">
 		<input type="button" value="Log in" id="loginbutton"/>
-		<input type="button" value="New user" id="newuserbutton"/>
+		<input type="button" value="New user" id="newuserbutton"/><br>
 	</div>
 	<div class="loginControlled" <?= $user ? "" : "style='display:none;'" ?>>
 		<span id="loggedinuser"><?= $user ?></span>
