@@ -74,7 +74,7 @@ foreach ($brains->listAll() as $one) {
   <div class="push"><!-- --></div>
 </div>
 
-<div class="footer">Created by Knut Erik Borgen (<a href="mailto:knutbo@ifi.uio.no">knutbo@ifi.uio.no</a>)</div>
+<div class="footer">Released under the GNU Pulic license V3.0 - <a href="http://code.google.com/p/javascriptbattle">Project home at Google Code</a>.</div>
 
 </body>
 </html>
