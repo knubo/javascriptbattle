@@ -108,3 +108,18 @@ html, body {
 .footer, .push {
 	height: 4em; /* .push must be the same height as .footer */
 }
+
+.bigerror {
+  font-size:xx-large;
+  font-weight:bold;
+  color:red;
+}
+
+#errorlist li {
+    list-style:square outside;
+    color:red;
+}
+
+.errortext {
+    color:black;
+}
