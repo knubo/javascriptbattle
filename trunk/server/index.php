@@ -46,7 +46,7 @@ Log in or create a user (just write in wanted username and password and hit crea
  the same name as one you already has uploaded, it will be replaced. Both name and function must be globally
 unique or it will not be accepted. Please note that there is a 64000 character limit to each brain.</span>
  
- <form method="post" enctype="multipart/form-data" id="uploadform" action="ajax/upload.php">
+ <form method="post" enctype="multipart/form-data" id="uploadform" action="upload.php">
  Brain name:<br><input id="brainname" name="brainname"><br>
  <input type="hidden" name="MAX_FILE_SIZE" value="64000" />
  File:<br><input type="file" id="brainfile" name="brainfile"><br>
