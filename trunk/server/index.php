@@ -64,7 +64,7 @@ unique or it will not be accepted. Please note that there is a 64000 character l
 <?php
 
 foreach ($brains->listAll() as $one) {
-	echo "<tr><td>" . $one["name"] . "</td><td>" . $one["owner"] . "</td><td>" .
+	echo "<tr><td><a href=\"ajax/bot.php?action=get&name=".$one["name"]."\">" . $one["name"] . "</a></td><td>" . $one["owner"] . "</td><td>" .
 	$one["created"] . "</td><td>" . $one["func"] . "</td></tr>";
 }
 ?>
