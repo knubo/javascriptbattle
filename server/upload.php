@@ -81,6 +81,8 @@ if(count($errors) > 0) {
 	die;
 }
 
+mail("knutbo@ifi.uio.no","JavascriptBattle: New bot from $user - $brainname","");
+
 $prep = $db->prepare("insert into " . AppConfig :: DB_PREFIX . "brains (bot,created,name,owner, func) values (?,now(),?,?,?) on duplicate key update bot=?,created=now(),func=?");
 $prep->bind_params("ssssss", $bot, $brainname, $user, $func[1], $bot, $func[1]);
 $prep->execute();

@@ -32,6 +32,8 @@ if (!$user || !$password) {
 switch ($action) {
 	case "save" :
 		$res = array ();
+		
+		mail("knutbo@ifi.uio.no","JavascriptBattle: New user $user","");
 
 		if (strcmp($loggedInUser, $user) == 0) {
 			$accUsers = new User($db);

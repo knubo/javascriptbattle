@@ -13,6 +13,7 @@ $brains = new Brains($db);
 
 switch ($action) {
 	case "get" :
+		header("Content-Type: text/plain");
 		echo $brains->getOne($name);
 		break;
 	case "list" :
