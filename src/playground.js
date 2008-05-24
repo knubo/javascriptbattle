@@ -31,8 +31,8 @@ function Arena(width, height) {
 
         if (instant) {
             theBot.img.setStyle({
-                top: ypos,
-                left: xpos
+                top: ypos+'px',
+                left: xpos+'px'
             });
         } else {
             new Effect.Move(theBot.img, {y:ypos, x:xpos, mode: 'absolute'});
@@ -130,13 +130,13 @@ function Arena(width, height) {
         var laser = bot.laserImg;
 
         if (bot.dir == Bot.DIRSOUTH) {
-            laser.setStyle("display:block; width:5;height:85;left:13;top:25");
+            laser.setStyle("display:block; width:5px;height:85px;left:13px;top:25px");
         } else if (bot.dir == Bot.DIRNORTH) {
-            laser.setStyle("display:block; width:5;height:90;left:13;top:-70");
+            laser.setStyle("display:block; width:5px;height:90px;left:13px;top:-70px");
         } else if (bot.dir == Bot.DIRWEST) {
-            laser.setStyle("display:block; width:85;height:5;left:-75;top:13");
+            laser.setStyle("display:block; width:85px;height:5px;left:-75px;top:13px");
         } else if (bot.dir == Bot.DIREAST) {
-            laser.setStyle("display:block; width:90;height:5;left:20;top:13");
+            laser.setStyle("display:block; width:90px;height:5px;left:20px;top:13px");
         }
         new Effect.Fade(laser, { duration: 0.5 });
 
