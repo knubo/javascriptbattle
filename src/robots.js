@@ -163,9 +163,11 @@ function Robots(arena) {
                     this.performCommand(currentBot, command);
                 }
             } catch(e) {
-                console.error('Failed in decide');
-                console.dir(e);
-                console.dir(currentBot.botBrain);
+            	if(console) {
+                	console.error('Failed in decide');
+                	console.dir(e);
+                	console.dir(currentBot.botBrain);
+                }
             }
         }
         this.turn++;
