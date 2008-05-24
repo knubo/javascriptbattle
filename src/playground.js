@@ -21,31 +21,45 @@ function Arena(width, height) {
 
         var cellPosition = cellToMoveTo.viewportOffset();
 
+		var ypos = cellPosition.top;
+		var xpos = cellPosition.left;
+
+		if (!(/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent))){
+			xpos++;
+			ypos++;
+		}  
+
         if (instant) {
             theBot.img.setStyle({
-                top: cellPosition.top,
-                left: cellPosition.left
+                top: ypos,
+                left: xpos
             });
         } else {
-            new Effect.Move(theBot.img, {y:cellPosition.top, x:cellPosition.left , mode: 'absolute'});
+            new Effect.Move(theBot.img, {y:ypos, x:xpos, mode: 'absolute'});
         }
     }
 
-    this.drawArena = function (target) {
-        target.innerHTML = "";
-        var table = new Element('table', {'class':'arena'});
+    this.drawArena = function () {
+        var table = $('arenatable');
 
-        target.insert(table);
+		if ( table.hasChildNodes() ) {
+    	    while ( table.childNodes.length >= 1 ) {
+        	  table.removeChild( table.firstChild );       
+    		} 
+		}
 
+	
         for (y = 0; y < this.height; y++) {
             var row = new Element('tr');
             table.insert(row);
+           
             for (x = 0; x < this.width; x++) {
-                var col = new Element('td');
-                col.id = 'y' + y + 'x' + x;
+                var col = new Element('td', {'id':'y' + y + 'x' + x});
+                col.innerHTML = ' ';
                 row.insert(col);
             }
         }
+
     }
 
     this.newBot = function(bot) {
@@ -143,14 +157,38 @@ function Arena(width, height) {
 
         var res = '';
 
+		var table = $('playerlist');
+
+		if ( table.hasChildNodes() ) {
+    	    while ( table.childNodes.length >= 1 ) {
+        	  table.removeChild( table.firstChild );       
+    		} 
+		}
+
         for (i = 0; i < bots.length; i++) {
-            res += "<tr id='row" + bots[i].botBrain.name + "'><td><img src='" + bots[i].botBrain.picUrl +
-                   "' id='img" + bots[i].botBrain.name + "' class='robotImg' ></td><td>";
-            res += bots[i].botBrain.name + '</td><td id="health' + bots[i].botBrain.name + '">';
-            res += bots[i].health + '</td><td id="points' + bots[i].botBrain.name + '">' + bots[i].points + '</tr>';
+        	var tr = new Element('tr', {'id':bots[i].botBrain.name});
+
+        	var td = new Element('td');
+        	td.innerHTML = "<img src='" + bots[i].botBrain.picUrl +
+                   "' id='img" + bots[i].botBrain.name + "' class='robotImg'>";
+        	tr.insert(td);
+        	
+        	td = new Element('td');
+        	td.innerHTML = bots[i].botBrain.name;
+        	tr.insert(td);
+        	
+        	td = new Element('td', {'id':"health"+bots[i].botBrain.name});
+            td.innerHTML = bots[i].health;
+            tr.insert(td);
+            
+        	td = new Element('td', {'id':"points"+bots[i].botBrain.name});
+            td.innerHTML = bots[i].points;
+            tr.insert(td);
+        
+        	table.insert(tr);
         }
 
-        $('playerlist').innerHTML = res;
+        
     }
 }
 
@@ -180,7 +218,7 @@ function stopLoop() {
 function init(addBots) {
     arena = new Arena($('playgroundHeight').getValue(), $('playgroundWidth').getValue());
     robots = new Robots(arena);
-    arena.drawArena($('playground'));
+    arena.drawArena();
 
     if (addBots) {
         robots.addBotRandomLocation(new BotBrain1());
