@@ -147,7 +147,7 @@
 }
 
 #robotpick{
-    background:lightgray;
+    background:#d3d3d3;
     padding:10px;
     border:2px solid #eee;
 }
@@ -167,6 +167,6 @@
 #robotpick thead tr {
     font-weight:bold;
     color:white;
-    background:slategray;
+    background:#708090;
     white-space:nowrap;
 }

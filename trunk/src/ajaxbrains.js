@@ -9,17 +9,33 @@ function pickRobots() {
             availableBrains = new Hash();
             var brains = transport.responseJSON;
             var i;
-            $('brainlist').innerHTML = "";
+            var table = $('brainlist');
 
+			if ( table.hasChildNodes() ) {
+    	    	while ( table.childNodes.length >= 1 ) {
+        	  		table.removeChild( table.firstChild );       
+    			} 
+			}
             for (i = 0; i < brains.length; i++) {
                 availableBrains.set(brains[i].name, brains[i]);
 
                 var tr = new Element('tr');
-                $('brainlist').insert(tr);
+                table.insert(tr);
 
-                tr.innerHTML = '<td>' + (brains[i].name) + "</td><td>" +
-                               (brains[i].owner) + "</td><td>" + (brains[i].created) +
-                               "</td><td><input type='checkbox' name='robot' value='" + (brains[i].name) + "'></td>";
+				var td = new Element('td');
+				td.innerHTML = brains[i].name;
+				
+				tr.insert(td);
+				
+				td = new Element('td');
+				td.innerHTML = brains[i].created;
+				
+				tr.insert(td);
+
+				td = new Element('td');
+				td.innerHTML = "<input type='checkbox' name='robot' value='" + (brains[i].name) + "'>";
+
+				tr.insert(td);
             }
         }
     });
