@@ -246,7 +246,9 @@ function restart() {
         } else {
             robots.addBotRandomLocation(eval("new "+allBots[i].botBrain.constructor+"()"));
         }
+        allBots[i].img.setStyle("display:none");
     }
+    
 
     arena.updatePlayerInfo(robots.bots);
 }
